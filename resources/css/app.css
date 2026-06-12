@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+  --color-litus-navy: #0e173b;
+  --color-litus-navy-dark: #06101f;
+  --color-litus-primary: #0b2476;
+  --color-litus-primary-dark: #081d5c;
+  --color-litus-muted: #607090;
+  --color-litus-bg: #f8fafd;
+  --font-sans: 'Montserrat', 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    @apply bg-litus-bg text-litus-primary font-sans antialiased;
+  }
+}
+
+.animate-on-scroll { opacity: 0; }
+.animate-on-scroll.in-view { opacity: 1; }
+.animate-now { opacity: 0; }
+.animate-now.played { opacity: 1; }
+
+.animate-on-scroll[data-animate="fadeInUp"],
+.animate-now[data-animate="fadeInUp"] { transform: translateY(30px); }
+.animate-on-scroll[data-animate="fadeInUp"].in-view,
+.animate-now[data-animate="fadeInUp"].played {
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: calc(var(--delay, 0) * 1s);
+}
+
+.animate-on-scroll[data-animate="fadeIn"],
+.animate-now[data-animate="fadeIn"] { transform: none; }
+.animate-on-scroll[data-animate="fadeIn"].in-view,
+.animate-now[data-animate="fadeIn"].played {
+  animation: fadeIn 0.6s ease-out forwards;
+  animation-delay: calc(var(--delay, 0) * 1s);
+}
+
+.animate-on-scroll[data-animate="slideLeft"],
+.animate-now[data-animate="slideLeft"] { transform: translateX(-40px); }
+.animate-on-scroll[data-animate="slideLeft"].in-view,
+.animate-now[data-animate="slideLeft"].played {
+  animation: slideInLeft 0.8s ease-out forwards;
+  animation-delay: calc(var(--delay, 0) * 1s);
+}
+
+.animate-on-scroll[data-animate="slideRight"],
+.animate-now[data-animate="slideRight"] { transform: translateX(40px); }
+.animate-on-scroll[data-animate="slideRight"].in-view,
+.animate-now[data-animate="slideRight"].played {
+  animation: slideInRight 0.8s ease-out forwards;
+  animation-delay: calc(var(--delay, 0) * 1s);
+}
+
+.animate-on-scroll[data-animate="scaleIn"],
+.animate-now[data-animate="scaleIn"] { transform: scale(0.95); }
+.animate-on-scroll[data-animate="scaleIn"].in-view,
+.animate-now[data-animate="scaleIn"].played {
+  animation: scaleIn 0.6s ease-out forwards;
+  animation-delay: calc(var(--delay, 0) * 1s);
+}
+
+/* Hero slider — matches React motion AnimatePresence */
+@keyframes heroContentEnter {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroContentExit {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+}
+
+[data-hero-bg] {
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 1s ease;
+}
+[data-hero-bg].is-active {
+  opacity: 1;
+  z-index: 1;
+}
+[data-hero-bg].is-active img {
+  animation: heroKenBurns 5.5s ease-out forwards;
+}
+@keyframes heroKenBurns {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+[data-hero-content] {
+  display: none;
+}
+[data-hero-content].is-active {
+  display: block;
+}
+[data-hero-content].is-entering {
+  animation: heroContentEnter 0.7s ease-out forwards;
+}
+[data-hero-content].is-exiting {
+  display: block;
+  animation: heroContentExit 0.7s ease-out forwards;
+}
+
+/* Gallery lightbox */
+[data-gallery-lightbox].is-open { display: flex; }
+
+/* Filter hidden items */
+[data-filter-item].is-hidden { display: none; }
+
+/* About tabs */
+[data-tab-panel].is-hidden { display: none; }
