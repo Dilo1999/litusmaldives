@@ -1,24 +1,42 @@
 @props([
     'title',
     'subtitle' => null,
-    'crumb',
+    'eyebrow' => null,
     'image' => config('litus.hero_image'),
+    'cta' => null,
+    'ctaRoute' => 'contact',
 ])
 
-<section class="relative h-[360px] flex items-center">
-    <img src="{{ $image }}" alt="{{ $title }}" class="absolute inset-0 w-full h-full object-cover">
-    <div class="absolute inset-0 bg-linear-to-br from-litus-primary/96 to-litus-primary/75"></div>
-    <div class="absolute left-0 top-0 bottom-0 w-1 bg-linear-to-b from-white to-transparent"></div>
+<section class="relative h-[clamp(480px,55vh,620px)] overflow-hidden">
+    <img src="{{ $image }}" alt="{{ $title }}" class="absolute inset-0 h-full w-full object-cover">
+    <div class="page-hero-overlay absolute inset-0"></div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-7 w-full pt-16">
-        <div class="flex items-center gap-2 mb-5 text-[0.7rem]">
-            <a href="{{ route('home') }}" class="text-white/40 hover:text-white/70 transition-colors">Home</a>
-            <span class="text-white/20">/</span>
-            <span class="text-white font-semibold">{{ $crumb }}</span>
+    <div class="absolute inset-0 flex items-center pt-[68px]">
+        <div class="mx-auto w-full max-w-[1320px] px-[52px]">
+            <div class="max-w-[640px] animate-on-scroll" data-animate="fadeInUp">
+                @if($eyebrow)
+                    <div class="mb-5 inline-flex items-center gap-2">
+                        <div class="h-0.5 w-7 bg-litus-accent"></div>
+                        <span class="text-[0.65rem] font-bold tracking-[0.22em] text-litus-accent">{{ $eyebrow }}</span>
+                    </div>
+                @endif
+
+                <h1 class="m-0 text-[clamp(2.4rem,6vw,4.8rem)] leading-[1.08] font-black tracking-[-0.02em] text-white">
+                    {{ $title }}
+                </h1>
+
+                @if($subtitle)
+                    <p class="mt-6 mb-0 max-w-[480px] text-[1.05rem] leading-[1.78] text-white/62">
+                        {{ $subtitle }}
+                    </p>
+                @endif
+
+                @if($cta)
+                    <div class="mt-9">
+                        <x-arrow-link :href="route($ctaRoute)" variant="accent" :label="$cta" />
+                    </div>
+                @endif
+            </div>
         </div>
-        <h1 class="text-white font-black text-[clamp(2.2rem,5vw,3.6rem)] leading-tight mb-3.5">{{ $title }}</h1>
-        @if($subtitle)
-            <p class="text-white/55 text-[0.95rem]">{{ $subtitle }}</p>
-        @endif
     </div>
 </section>

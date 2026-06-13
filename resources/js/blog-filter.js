@@ -1,37 +1,42 @@
 /**
- * Blog category filter.
+ * Blog category filter — matches React Blog.tsx behaviour.
  */
 function initBlogFilter() {
   const root = document.querySelector('[data-blog]');
   if (!root) return;
 
   const buttons = root.querySelectorAll('[data-blog-filter]');
-  const items = root.querySelectorAll('[data-blog-item]');
-  const featured = root.querySelector('[data-blog-featured]');
+  const featuredCards = [...root.querySelectorAll('[data-blog-featured]')];
+  const gridItems = [...root.querySelectorAll('[data-blog-item]')];
+
+  const matches = (tag, cat) => {
+    if (cat === 'All') return true;
+    return (tag || '').toLowerCase().includes(cat.toLowerCase());
+  };
 
   const filter = (cat) => {
-    let firstVisible = null;
-    items.forEach((item) => {
-      const tag = (item.dataset.tag || '').toLowerCase();
-      const match = cat === 'All' || tag.includes(cat.toLowerCase());
-      item.classList.toggle('is-hidden', !match);
-      if (match && !firstVisible) firstVisible = item;
+    const matchingSlugs = featuredCards
+      .filter((card) => matches(card.dataset.tag, cat))
+      .map((card) => card.dataset.slug);
+
+    featuredCards.forEach((card) => {
+      card.classList.toggle('hidden', card.dataset.slug !== matchingSlugs[0]);
     });
 
-    if (featured) {
-      const featTag = (featured.dataset.tag || '').toLowerCase();
-      const showFeatured = cat === 'All' || featTag.includes(cat.toLowerCase());
-      featured.classList.toggle('is-hidden', !showFeatured);
-    }
+    gridItems.forEach((item) => {
+      const slug = item.dataset.slug;
+      const index = matchingSlugs.indexOf(slug);
+      item.classList.toggle('hidden', index <= 0);
+    });
 
     buttons.forEach((btn) => {
       const active = btn.dataset.blogFilter === cat;
-      btn.classList.toggle('bg-litus-primary', active);
+      btn.classList.toggle('bg-litus-navy', active);
       btn.classList.toggle('text-white', active);
-      btn.classList.toggle('border-litus-primary', active);
-      btn.classList.toggle('bg-transparent', !active);
-      btn.classList.toggle('text-litus-primary', !active);
-      btn.classList.toggle('border-litus-primary/20', !active);
+      btn.classList.toggle('shadow-[0_4px_14px_rgba(14,23,59,0.2)]', active);
+      btn.classList.toggle('bg-white', !active);
+      btn.classList.toggle('text-litus-muted', !active);
+      btn.classList.toggle('shadow-[0_2px_8px_rgba(14,23,59,0.07)]', !active);
     });
   };
 

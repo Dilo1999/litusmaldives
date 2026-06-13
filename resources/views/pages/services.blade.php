@@ -3,55 +3,50 @@
 @section('title', 'Services')
 
 @section('content')
-    <x-page-hero
-        title="Our Services"
-        subtitle="End-to-end logistics solutions across every atoll of the Maldives."
-        crumb="Services"
-        :image="config('litus.sample_images')[2]"
-    />
+    <div class="bg-litus-bg">
+        <x-page-hero
+            eyebrow="END-TO-END FREIGHT SOLUTIONS"
+            title="Our Services"
+            subtitle="End-to-end logistics solutions across every atoll of the Maldives."
+            :image="config('litus.sample_images')[0]"
+            cta="Get a Quote"
+            ctaRoute="contact"
+        />
 
-    <section class="pt-20 bg-litus-bg">
-        <div class="max-w-7xl mx-auto px-7 text-center">
-            <div class="flex items-center justify-center gap-3 mb-4">
-                <div class="w-7 h-0.5 bg-litus-primary"></div>
-                <span class="text-litus-primary font-bold text-[0.62rem] tracking-[0.24em]">WHAT WE DO</span>
-                <div class="w-7 h-0.5 bg-litus-primary"></div>
+        <section class="px-7 pt-14">
+            <div class="mx-auto max-w-[1260px] text-center">
+                <x-section-badge text="WHAT WE DO" surface="white" class="justify-center" />
+                <h2 class="mb-4 text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.15] font-black text-litus-navy">
+                    Our Services Make Your Work More Productive
+                </h2>
+                <p class="mx-auto max-w-[620px] text-[0.93rem] leading-[1.88] text-litus-muted">
+                    As the leading logistics provider in the Maldives, we specialise in a complete suite of freight and supply chain solutions designed for the unique geography of the archipelago.
+                </p>
             </div>
-            <h2 class="text-litus-primary font-black text-[clamp(2rem,4vw,2.8rem)] leading-tight mb-5">Our Services Make Your Work More Productive</h2>
-            <p class="text-litus-muted max-w-xl mx-auto leading-relaxed text-[0.93rem]">
-                As the leading logistics provider in the Maldives, we specialise in a complete suite of freight and supply chain solutions designed for the unique geography of the archipelago.
-            </p>
-        </div>
-    </section>
+        </section>
 
-    <section class="py-16 pb-24 bg-litus-bg">
-        <div class="max-w-7xl mx-auto px-7 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            @foreach(config('litus.services') as $i => $service)
-                <div class="group bg-white border border-litus-primary/8 rounded-md overflow-hidden cursor-pointer hover:border-litus-primary hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(11,36,118,0.12)] transition-all animate-on-scroll" data-animate="fadeInUp" data-delay="{{ $i * 0.06 }}">
-                    <div class="h-40 overflow-hidden relative">
-                        <x-litus-sample-img :index="$i" alt="{{ $service['title'] }}" class="w-full h-full object-cover brightness-65" />
-                        <div class="absolute inset-x-0 bottom-0 h-3/5 bg-linear-to-t from-litus-primary/90 to-transparent"></div>
-                        <div class="absolute bottom-3.5 left-4 w-10 h-10 bg-litus-primary rounded-sm flex items-center justify-center text-white">
-                            <x-litus-icon :name="$service['icon']" class="w-[18px] h-[18px]" />
+        <section class="px-7 pt-11 pb-20">
+            <div class="relative mx-auto grid max-w-[1260px] grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+                @foreach(config('litus.services') as $i => $service)
+                    <div class="litus-card group overflow-hidden transition-all duration-250 hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(6,182,212,0.14),0_2px_8px_rgba(14,23,59,0.06)]">
+                        <div class="relative h-[150px] overflow-hidden">
+                            <x-litus-sample-img :index="$i" :alt="$service['title']" class="h-full w-full object-cover" />
+                            <div class="absolute inset-x-0 bottom-0 h-3/5 bg-linear-to-t from-litus-navy/88 to-transparent"></div>
+                            <div class="absolute bottom-3.5 left-4 flex h-[38px] w-[38px] items-center justify-center rounded-[10px] bg-litus-accent text-white">
+                                <x-litus-icon :name="$service['icon']" class="h-[17px] w-[17px]" />
+                            </div>
+                        </div>
+                        <div class="px-5 pt-5 pb-[22px]">
+                            <h3 class="mb-2.5 text-[0.92rem] font-extrabold text-litus-navy">{{ $service['title'] }}</h3>
+                            <p class="mb-4 text-[0.8rem] leading-[1.75] text-litus-muted">{{ $service['desc'] }}</p>
+                            <div class="flex items-center gap-1 text-[0.72rem] font-bold text-litus-accent">
+                                Learn More
+                                <x-litus-icon name="arrow-right" class="h-3 w-3" />
+                            </div>
                         </div>
                     </div>
-                    <div class="p-5 pb-6">
-                        <h3 class="text-litus-primary font-extrabold text-[0.95rem] leading-snug mb-3">{{ $service['title'] }}</h3>
-                        <p class="text-litus-muted text-[0.82rem] leading-relaxed m-0">{{ $service['desc'] }}</p>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </section>
-
-    <section class="py-20 bg-litus-primary">
-        <div class="max-w-2xl mx-auto px-7 text-center">
-            <h2 class="text-white font-black text-3xl mb-4">We Are the Best at Total Logistics Solutions</h2>
-            <p class="text-white/50 leading-relaxed mb-9">Trusted by leading resorts, businesses, and government entities across the Maldives.</p>
-            <a href="{{ route('contact') }}" class="inline-flex items-center gap-2 px-10 py-4 bg-litus-primary text-white font-bold text-[0.72rem] tracking-[0.12em] rounded-sm no-underline hover:opacity-85 transition-opacity">
-                GET A QUOTE
-                <x-litus-icon name="arrow-right" class="w-3.5 h-3.5" />
-            </a>
-        </div>
-    </section>
+                @endforeach
+            </div>
+        </section>
+    </div>
 @endsection

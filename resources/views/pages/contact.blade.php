@@ -3,67 +3,60 @@
 @section('title', 'Contact')
 
 @section('content')
-    <x-page-hero
-        title="Leading Logistics Provider in Maldives"
-        subtitle="Get in touch — we respond within 2 business hours."
-        crumb="Contact"
-        :image="config('litus.sample_images')[9]"
-    />
+    <div class="bg-litus-bg">
+        <x-page-hero
+            eyebrow="GET IN TOUCH WITH US"
+            title="Contact Us"
+            subtitle="Get in touch — we respond within 2 business hours."
+            :image="config('litus.sample_images')[0]"
+        />
 
-    <section class="bg-litus-primary">
-        <div class="max-w-7xl mx-auto px-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px">
-            @foreach([
-                ['icon' => 'map-pin', 'title' => 'Our Office', 'body' => config('litus.contact.address')],
-                ['icon' => 'phone', 'title' => 'Phone', 'body' => implode("\n", config('litus.contact.phones'))],
-                ['icon' => 'mail', 'title' => 'Email', 'body' => config('litus.contact.email')],
-                ['icon' => 'clock', 'title' => 'Working Hours', 'body' => config('litus.contact.hours')],
-            ] as $i => $card)
-                <div @class(['p-8 text-center', 'bg-litus-primary' => $i % 2 === 0, 'bg-litus-primary/8' => $i % 2 !== 0])>
-                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-3.5 text-white/70">
-                        <x-litus-icon :name="$card['icon']" class="w-5 h-5" />
+        <section class="px-7 pt-8">
+            <div class="mx-auto grid max-w-[1260px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                @foreach([
+                    ['icon' => 'map-pin', 'title' => 'Our Office', 'body' => config('litus.contact.address')],
+                    ['icon' => 'phone', 'title' => 'Phone', 'body' => implode("\n", config('litus.contact.phones'))],
+                    ['icon' => 'mail', 'title' => 'Email', 'body' => config('litus.contact.email')],
+                    ['icon' => 'clock', 'title' => 'Working Hours', 'body' => config('litus.contact.hours')],
+                ] as $card)
+                    <div class="litus-card rounded-[20px] px-[22px] py-6 text-center">
+                        <div class="mx-auto mb-3.5 flex h-12 w-12 items-center justify-center rounded-full bg-litus-surface">
+                            <x-litus-icon :name="$card['icon']" class="h-5 w-5 text-litus-accent" />
+                        </div>
+                        <div class="mb-2 text-[0.82rem] font-bold text-litus-navy">{{ $card['title'] }}</div>
+                        <div class="text-[0.78rem] leading-[1.65] whitespace-pre-line text-litus-muted">{{ $card['body'] }}</div>
                     </div>
-                    <div class="text-white font-bold text-[0.82rem] mb-2">{{ $card['title'] }}</div>
-                    <div class="text-white/45 text-[0.8rem] leading-relaxed whitespace-pre-line">{{ $card['body'] }}</div>
-                </div>
-            @endforeach
-        </div>
-    </section>
+                @endforeach
+            </div>
+        </section>
 
-    <section class="py-24 bg-litus-bg">
-        <div class="max-w-7xl mx-auto px-7 grid grid-cols-1 lg:grid-cols-2 gap-18">
-            <div>
-                <x-section-label text="OUR LOCATION" />
-                <h2 class="text-litus-primary font-black text-3xl leading-tight mb-5">Find Us in Malé</h2>
-                <p class="text-litus-muted text-[0.88rem] leading-relaxed mb-7">
-                    Ma. Dydum, 2nd Floor, Buruzu Magu, 20340, Malé, Republic of Maldives. Our offices are open Sunday–Thursday, 8:00 AM to 5:00 PM.
-                </p>
-                <div class="rounded-md overflow-hidden border border-litus-primary/10">
+        <section class="px-7 pt-7 pb-20">
+            <div class="mx-auto grid max-w-[1260px] grid-cols-1 gap-6 lg:grid-cols-[1fr_1.1fr]">
+                <div class="litus-card overflow-hidden rounded-3xl">
                     <iframe
                         title="Litus Maldives Location"
                         src="{{ config('litus.contact.map_embed') }}"
-                        class="w-full h-[360px] border-0 block"
+                        class="block min-h-[320px] w-full flex-1 border-0"
                         loading="lazy"
                     ></iframe>
+                    <div class="px-6 py-5">
+                        <div class="mb-1 text-[0.88rem] font-bold text-litus-navy">Our Office Location</div>
+                        <div class="text-[0.8rem] text-litus-muted">{{ config('litus.contact.address') }}, Maldives</div>
+                    </div>
+                </div>
+
+                <div class="litus-card rounded-3xl p-8 md:p-10">
+                    <x-section-badge text="CONTACT US" />
+                    <h2 class="mb-2 text-[1.5rem] leading-[1.2] font-black text-litus-navy">
+                        Have Questions?<br>
+                        Get in Touch!
+                    </h2>
+                    <p class="mb-7 text-[0.83rem] leading-[1.72] text-litus-muted">
+                        We handle all formalities for your imports and exports, working with all international stations to guarantee your load arrives safely.
+                    </p>
+                    <x-contact-form variant="soft" />
                 </div>
             </div>
-
-            <div class="bg-white rounded-lg border border-litus-primary/8 p-11 shadow-[0_8px_48px_rgba(11,36,118,0.07)]">
-                <x-section-label text="CONTACT US" />
-                <h3 class="text-litus-primary font-black text-2xl mb-2">Have Questions?<br>Get in Touch!</h3>
-                <p class="text-litus-muted text-[0.85rem] leading-relaxed mb-8">
-                    We handle all formalities for your imports and exports. We work with all international stations to guarantee your load safely reaches without any delays.
-                </p>
-                <x-contact-form />
-            </div>
-        </div>
-    </section>
-
-    <div class="h-80">
-        <iframe
-            title="Litus Maldives Map"
-            src="{{ config('litus.contact.map_full') }}"
-            class="w-full h-full border-0 block"
-            loading="lazy"
-        ></iframe>
+        </section>
     </div>
 @endsection

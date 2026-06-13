@@ -7,11 +7,13 @@
 
 @theme {
   --color-litus-navy: #0e173b;
-  --color-litus-navy-dark: #06101f;
-  --color-litus-primary: #0b2476;
-  --color-litus-primary-dark: #081d5c;
-  --color-litus-muted: #607090;
-  --color-litus-bg: #f8fafd;
+  --color-litus-navy-dark: #081230;
+  --color-litus-primary: #0e173b;
+  --color-litus-primary-dark: #081230;
+  --color-litus-muted: #7a8aaa;
+  --color-litus-bg: #eef2f9;
+  --color-litus-accent: #06b6d4;
+  --color-litus-surface: #eef2f9;
   --font-sans: 'Montserrat', 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -36,13 +38,123 @@
   to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes hero-tile-wipe {
+  from { clip-path: inset(100% 0 0 0); }
+  to { clip-path: inset(0% 0 0 0); }
+}
+@keyframes hero-mosaic-in {
+  from { opacity: 0; transform: scale(0.65); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes hero-blind-in {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 @layer base {
   body {
-    @apply bg-litus-bg text-litus-primary font-sans antialiased;
+    @apply bg-litus-bg text-litus-navy font-sans antialiased;
+  }
+}
+
+@layer components {
+  .litus-card {
+    @apply rounded-[20px] border border-litus-navy/5 bg-white shadow-[0_4px_24px_rgba(14,23,59,0.08),0_1px_4px_rgba(14,23,59,0.04)];
+  }
+
+  .litus-orb {
+    @apply pointer-events-none absolute rounded-full;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.35) 0%, rgba(14, 23, 59, 0.12) 60%, transparent 100%);
+    filter: blur(48px);
+  }
+
+  .litus-soft-input {
+    @apply w-full rounded-xl border-[1.5px] border-transparent bg-litus-surface px-4 py-3 text-[0.85rem] text-litus-navy outline-none transition-colors;
+  }
+
+  .litus-soft-input:focus {
+    @apply border-litus-accent;
+  }
+
+  .hero-overlay-gradient {
+    background:
+      linear-gradient(100deg, rgba(14, 23, 59, 0.92) 0%, rgba(14, 23, 59, 0.65) 55%, rgba(14, 23, 59, 0.2) 100%),
+      linear-gradient(to top, rgba(14, 23, 59, 0.8) 0%, transparent 50%);
+  }
+
+  .page-hero-overlay {
+    background:
+      linear-gradient(100deg, rgba(14, 23, 59, 0.92) 0%, rgba(14, 23, 59, 0.65) 55%, rgba(14, 23, 59, 0.2) 100%),
+      linear-gradient(to top, rgba(14, 23, 59, 0.8) 0%, transparent 50%);
+  }
+
+  /* Hero slide transition effects — class names referenced in hero.blade.php + hero-slider.js */
+  [data-hero-effect] {
+    @apply pointer-events-none absolute inset-0 z-[4] overflow-hidden;
+  }
+
+  [data-hero-slider].is-hero-transitioning .hero-overlay-gradient {
+    z-index: 3;
+  }
+
+  .hero-fx-layer {
+    @apply pointer-events-none absolute inset-0;
+  }
+
+  .hero-fx-wipe-tile {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    clip-path: inset(100% 0 0 0);
+    animation: hero-tile-wipe 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: var(--hero-delay, 0ms);
+  }
+
+  .hero-fx-wipe-inner {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-fx-mosaic-tile {
+    position: absolute;
+    overflow: hidden;
+    opacity: 0;
+    transform-origin: center;
+    animation: hero-mosaic-in 0.28s ease forwards;
+    animation-delay: var(--hero-delay, 0ms);
+  }
+
+  .hero-fx-mosaic-inner {
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-fx-blind-strip {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    transform-origin: top center;
+    transform: scaleY(0);
+    animation: hero-blind-in 0.42s ease forwards;
+    animation-delay: var(--hero-delay, 0ms);
+  }
+
+  .hero-fx-blind-inner {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
   }
 }
 
@@ -91,52 +203,56 @@ html {
   animation-delay: calc(var(--delay, 0) * 1s);
 }
 
-/* Hero slider — matches React motion AnimatePresence */
-@keyframes heroContentEnter {
-  from { opacity: 0; transform: translateY(40px); }
+@keyframes heroCopyEnter {
+  from { opacity: 0; transform: translateY(36px); }
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes heroContentExit {
-  from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(-20px); }
+
+.hero-copy-enter {
+  animation: heroCopyEnter 0.75s ease-out forwards;
 }
 
-[data-hero-bg] {
-  opacity: 0;
-  z-index: 0;
-  transition: opacity 1s ease;
-}
-[data-hero-bg].is-active {
-  opacity: 1;
-  z-index: 1;
-}
-[data-hero-bg].is-active img {
-  animation: heroKenBurns 5.5s ease-out forwards;
-}
-@keyframes heroKenBurns {
-  from { transform: scale(1); }
-  to { transform: scale(1.08); }
+[data-navbar].is-scrolled {
+  background-color: rgb(255 255 255 / 0.97);
+  border-color: rgb(14 23 59 / 0.07);
+  box-shadow: 0 4px 28px rgb(14 23 59 / 0.1);
+  backdrop-filter: blur(12px);
 }
 
-[data-hero-content] {
-  display: none;
+[data-navbar].is-scrolled [data-nav-link] {
+  color: #7a8aaa;
 }
-[data-hero-content].is-active {
-  display: block;
+[data-navbar].is-scrolled [data-nav-link][data-active="true"] {
+  color: var(--color-litus-accent);
+  border-bottom-color: var(--color-litus-accent);
 }
-[data-hero-content].is-entering {
-  animation: heroContentEnter 0.7s ease-out forwards;
+[data-navbar].is-scrolled [data-nav-link]:hover {
+  color: var(--color-litus-accent);
 }
-[data-hero-content].is-exiting {
-  display: block;
-  animation: heroContentExit 0.7s ease-out forwards;
+[data-navbar].is-scrolled [data-nav-phone] {
+  color: var(--color-litus-navy);
+}
+[data-navbar].is-scrolled [data-nav-cta] {
+  border-color: var(--color-litus-accent);
+  color: var(--color-litus-accent);
+}
+[data-navbar].is-scrolled [data-nav-divider] {
+  background-color: rgb(14 23 59 / 0.12);
 }
 
-/* Gallery lightbox */
 [data-gallery-lightbox].is-open { display: flex; }
-
-/* Filter hidden items */
 [data-filter-item].is-hidden { display: none; }
-
-/* About tabs */
 [data-tab-panel].is-hidden { display: none; }
+
+.group:hover .service-card-icon-wrap {
+  background-color: rgb(6 182 212 / 0.18);
+}
+.group:hover .service-card-icon {
+  transform: scale(2.8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-copy].is-fading {
+    transition-duration: 0.01ms;
+  }
+}

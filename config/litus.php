@@ -2,8 +2,9 @@
 
 return [
     'media_base' => 'https://www.litusmaldives.com/wp-content/uploads',
+    'logo' => 'https://www.litusmaldives.com/wp-content/uploads/2023/02/Litus-Maldives-2048x781-1-300x114.png',
 
-    'hero_image' => 'https://www.litusmaldives.com/wp-content/uploads/2024/11/lm-banner.webp',
+    'hero_image' => 'https://images.unsplash.com/photo-1578922746465-3a80a228f223?w=1920&h=1080&fit=crop&auto=format',
 
     'nav_links' => [
         ['label' => 'Home', 'route' => 'home'],
@@ -14,70 +15,74 @@ return [
         ['label' => 'Contact', 'route' => 'contact'],
     ],
 
+    'intro' => 'LITUS Maldives is a specialist freight management company with offices, warehousing, and an exceptional operations team providing end-to-end logistics services throughout the archipelago.',
+
     'slides' => [
         [
-            'tag' => 'LEADING LOGISTICS PROVIDER IN MALDIVES',
-            'headline' => ['LEADING LOGISTICS', 'PROVIDER IN MALDIVES'],
-            'accent' => 'PROVIDER IN MALDIVES',
-            'sub' => 'More than 12 years of experience delivering the finest result.',
-            'overlay' => 'rgba(14,23,59,0.55)',
-            'image' => 'https://www.litusmaldives.com/wp-content/uploads/2024/11/lm-banner.webp',
+            'eyebrow' => "MALDIVES' LEADING LOGISTICS COMPANY",
+            'h1' => 'Taking Logistics',
+            'h2' => 'Beyond Expectation',
+            'sub' => 'Safe and reliable delivery of your cargo to any atoll of the Maldives — sea, air, and land.',
+            'cta' => 'Get a Quote',
+            'cta_route' => 'contact',
+            'secondary_cta' => 'Our Services',
+            'secondary_route' => 'services',
+            'image' => 'https://images.unsplash.com/photo-1578922746465-3a80a228f223?w=1920&h=1080&fit=crop&auto=format',
+            'effect' => 'wipe',
         ],
         [
-            'tag' => 'TAKING LOGISTICS BEYOND EXPECTATION',
-            'headline' => ['TAKING LOGISTICS', 'BEYOND EXPECTATION'],
-            'accent' => 'BEYOND EXPECTATION',
-            'sub' => 'Experience the togetherness with hassle free moving.',
-            'overlay' => 'rgba(14,23,59,0.55)',
-            'image' => 'https://www.litusmaldives.com/wp-content/uploads/2024/11/viber_image_2024-08-26_15-44-48-984.jpg',
+            'eyebrow' => 'SCHEDULED & CHARTER SERVICES',
+            'h1' => 'Inter Atoll',
+            'h2' => 'Transportation',
+            'sub' => 'Reliable freight across all 26 atolls with a modern fleet built for the Maldivian archipelago.',
+            'cta' => 'Our Services',
+            'cta_route' => 'services',
+            'secondary_cta' => 'Our Services',
+            'secondary_route' => 'services',
+            'image' => 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920&h=1080&fit=crop&auto=format',
+            'effect' => 'mosaic',
         ],
         [
-            'tag' => 'CUSTOMS CLEARANCE',
-            'headline' => ['CUSTOMS', 'CLEARANCE'],
-            'accent' => 'CLEARANCE',
-            'sub' => 'Big or small… We can handle it all.',
-            'overlay' => 'rgba(14,23,59,0.55)',
-            'image' => 'https://www.litusmaldives.com/wp-content/uploads/2024/11/custom-bg.webp',
-        ],
-        [
-            'tag' => 'WAREHOUSING',
-            'headline' => ['SECURE', 'WAREHOUSING'],
-            'accent' => 'WAREHOUSING',
-            'sub' => 'Storage you can trust.',
-            'overlay' => 'rgba(14,23,59,0.50)',
-            'image' => 'https://www.litusmaldives.com/wp-content/uploads/2023/02/bg4-scaled.jpg',
-        ],
-        [
-            'tag' => 'RESORT SUPPLIES',
-            'headline' => ['RESORT', 'SUPPLIES'],
-            'accent' => 'SUPPLIES',
-            'sub' => 'We provide you assuredly service with quality goods.',
-            'overlay' => 'rgba(14,23,59,0.50)',
-            'image' => 'https://www.litusmaldives.com/wp-content/uploads/2023/02/bg5-scaled.jpg',
-        ],
-        [
-            'tag' => 'INTER ATOLL TRANSPORTATION',
-            'headline' => ['INTER ATOLL', 'TRANSPORTATION'],
-            'accent' => 'TRANSPORTATION',
-            'sub' => 'Globally connected, Locally invested.',
-            'overlay' => 'rgba(14,23,59,0.50)',
-            'image' => 'https://www.litusmaldives.com/wp-content/uploads/2023/02/bg6-scaled.jpg',
+            'eyebrow' => 'CUSTOMS · CARGO · WAREHOUSING',
+            'h1' => 'Your Trusted',
+            'h2' => 'Supply Chain Partner',
+            'sub' => 'From customs clearance to last-mile island delivery — Litus handles every step, every time.',
+            'cta' => 'Learn More',
+            'cta_route' => 'about',
+            'secondary_cta' => 'Our Services',
+            'secondary_route' => 'services',
+            'image' => 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1920&h=1080&fit=crop&auto=format',
+            'effect' => 'blinds',
         ],
     ],
 
-    'sample_images' => [
-        'https://www.litusmaldives.com/wp-content/uploads/2024/11/lm-banner.webp',
-        'https://www.litusmaldives.com/wp-content/uploads/2024/11/viber_image_2024-08-26_15-44-48-984.jpg',
-        'https://www.litusmaldives.com/wp-content/uploads/2024/11/custom-bg.webp',
-        'https://www.litusmaldives.com/wp-content/uploads/2023/02/bg4-scaled.jpg',
-        'https://www.litusmaldives.com/wp-content/uploads/2023/02/bg5-scaled.jpg',
-        'https://www.litusmaldives.com/wp-content/uploads/2023/02/bg6-scaled.jpg',
-        'https://www.litusmaldives.com/wp-content/uploads/2024/11/10-1024x1024.webp',
-        'https://www.litusmaldives.com/wp-content/uploads/2024/11/9-1024x1024.webp',
-        'https://www.litusmaldives.com/wp-content/uploads/2024/11/8-1024x1024.webp',
-        'https://www.litusmaldives.com/wp-content/uploads/2024/11/7-1024x1024.webp',
-        'https://www.litusmaldives.com/wp-content/uploads/2025/12/DSC09910-WebP-840x473.webp',
-        'https://www.litusmaldives.com/wp-content/uploads/2025/07/MAIN-840x473.webp',
+    'hero_features' => [
+        [
+            'icon' => 'ship',
+            'title' => 'Scheduled island-wide transportation',
+            'body' => 'Reliable inter-atoll freight services connecting all 26 atolls on fixed schedules and charter.',
+        ],
+        [
+            'icon' => 'file-check',
+            'title' => 'No limits on customs documentation',
+            'body' => 'Our licensed brokers handle all import/export paperwork so your cargo clears without delay.',
+        ],
+        [
+            'icon' => 'package',
+            'title' => 'Widest variety of cargo types',
+            'body' => 'From general goods to project cargo, vessels, and island consumables — we handle it all.',
+        ],
+    ],
+
+    'home_services' => [
+        ['icon' => 'plane', 'label' => 'Air, Land & Sea Cargo'],
+        ['icon' => 'package', 'label' => 'General Cargo Transport'],
+        ['icon' => 'anchor', 'label' => 'Transhipment'],
+        ['icon' => 'truck', 'label' => 'Crew & Project Cargo'],
+        ['icon' => 'boxes', 'label' => 'Vessel Necessities & Consumables'],
+        ['icon' => 'file-check', 'label' => 'Customs Brokerage'],
+        ['icon' => 'ship', 'label' => 'FCL / LCL & Air Cargo'],
+        ['icon' => 'cart', 'label' => 'Island Necessities & Consumables'],
     ],
 
     'services' => [
@@ -92,20 +97,68 @@ return [
     ],
 
     'why_points' => [
-        'Handling documentation and customs formalities for all ports',
-        'Coordinating multi-modal freight across sea, air, and road',
-        'Operating regular scheduled supply vessels to all islands',
-        '24 / 7 emergency charter for time-critical shipments',
-        'Real-time tracking on every shipment',
-        'Cargo insurance on all movements handled by Litus',
+        'Handling documentation for all Maldivian ports of entry',
+        'Multi-modal freight: sea, air, and road coordination',
+        'Regular scheduled supply vessels to all islands',
+        '24 / 7 emergency charter for urgent shipments',
+        'Real-time shipment tracking on every order',
+        'Full cargo insurance on all movements',
     ],
 
-    'partners' => ['VELAA', 'OZEN', 'One & Only', 'Nomad', 'KAANAPALI'],
+    'partners' => [
+        [
+            'name' => 'Twig Logistics Network',
+            'logo' => 'images/partner/viber_image_2023-02-16_10-01-03-182-150x150.png',
+        ],
+        [
+            'name' => 'Global Logistics Network',
+            'logo' => 'images/partner/viber_image_2023-02-16_10-13-25-747.png',
+        ],
+        [
+            'name' => 'X2 Elite',
+            'logo' => 'images/partner/viber_image_2023-02-16_10-13-26-617.png',
+        ],
+        [
+            'name' => 'JCtrans.net',
+            'logo' => 'images/partner/viber_image_2023-02-16_10-13-27-245-768x337.png',
+        ],
+    ],
+
+    'testimonial' => [
+        'quote' => 'LITUS Maldives: Setting the benchmark in logistics. Experience our excellence with seamless operations, secure handling, and efficient transport solutions that exceed expectations.',
+        'name' => 'Mohamed Zahid',
+        'role' => 'CEO',
+        'image' => 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop&auto=format',
+    ],
+
+    'operations_images' => [0, 1, 2, 3, 4, 5, 6],
 
     'articles' => [
-        ['tag' => 'LOGISTICS', 'date' => 'Mar 15, 2025', 'title' => 'New Cargo Routes Open Across Southern Atolls', 'excerpt' => 'Litus Maldives has launched two new scheduled cargo routes serving Addu Atoll and Fuvahmulah, reducing delivery times by up to 40%.'],
-        ['tag' => 'NEWS', 'date' => 'Feb 28, 2025', 'title' => 'Litus Partners with International Freight Network', 'excerpt' => 'A landmark agreement expands our door-to-door capabilities for international importers shipping goods into the Maldives.'],
-        ['tag' => 'INSIGHTS', 'date' => 'Jan 12, 2025', 'title' => 'Island Supply Chain: Meeting Resort Demands Year-Round', 'excerpt' => 'We explore the logistical challenges of supplying luxury resort properties in remote atolls through monsoon season.'],
+        ['tag' => 'LOGISTICS', 'date' => 'Mar 15, 2025', 'title' => 'New Cargo Routes Open Across Southern Atolls', 'excerpt' => 'Litus has launched two new scheduled routes serving Addu Atoll and Fuvahmulah, cutting delivery times by 40%.'],
+        ['tag' => 'NEWS', 'date' => 'Feb 28, 2025', 'title' => 'Litus Partners with International Freight Network', 'excerpt' => 'A landmark agreement expands our door-to-door capabilities for international importers shipping into the Maldives.'],
+        ['tag' => 'INSIGHTS', 'date' => 'Jan 12, 2025', 'title' => 'Island Supply Chain: Meeting Resort Demands Year-Round', 'excerpt' => 'We explore the logistical challenges of supplying luxury resorts through monsoon season.'],
+    ],
+
+    'faqs' => [
+        ['q' => 'What areas does Litus cover?', 'a' => 'All 26 atolls — from Malé to the most remote islands — with scheduled and on-demand freight.'],
+        ['q' => 'Do you handle customs documentation?', 'a' => 'Yes. Our licensed brokers manage all paperwork so your cargo clears without delay.'],
+        ['q' => 'Can Litus handle time-sensitive shipments?', 'a' => 'Absolutely — priority express, air freight, and fast-boat charter are all available.'],
+        ['q' => 'How do I get a quote?', 'a' => 'Call, email, or use the form below. We reply within 2 business hours.'],
+    ],
+
+    'sample_images' => [
+        'https://images.unsplash.com/photo-1578922746465-3a80a228f223?w=1920&h=1080&fit=crop&auto=format',
+        'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920&h=1080&fit=crop&auto=format',
+        'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1920&h=1080&fit=crop&auto=format',
+        'https://www.litusmaldives.com/wp-content/uploads/2023/02/bg4-scaled.jpg',
+        'https://www.litusmaldives.com/wp-content/uploads/2023/02/bg5-scaled.jpg',
+        'https://www.litusmaldives.com/wp-content/uploads/2023/02/bg6-scaled.jpg',
+        'https://www.litusmaldives.com/wp-content/uploads/2024/11/10-1024x1024.webp',
+        'https://www.litusmaldives.com/wp-content/uploads/2024/11/9-1024x1024.webp',
+        'https://www.litusmaldives.com/wp-content/uploads/2024/11/8-1024x1024.webp',
+        'https://www.litusmaldives.com/wp-content/uploads/2024/11/7-1024x1024.webp',
+        'https://www.litusmaldives.com/wp-content/uploads/2025/12/DSC09910-WebP-840x473.webp',
+        'https://www.litusmaldives.com/wp-content/uploads/2025/07/MAIN-840x473.webp',
     ],
 
     'blog_posts' => [
@@ -160,8 +213,11 @@ return [
         'address' => 'Ma. Dydum, 2nd Floor, Buruzu Magu, 20340, Malé',
         'phones' => ['+960 797 9055', '+960 779 7172'],
         'email' => 'sales@litusmaldives.com',
+        'ops_email' => 'ops@litusmaldives.com',
         'hours' => 'Sun–Thu: 8:00 AM – 5:00 PM',
-        'map_embed' => 'https://www.openstreetmap.org/export/embed.html?bbox=73.497%2C4.172%2C73.515%2C4.182&layer=mapnik&marker=4.1748%2C73.5094',
-        'map_full' => 'https://www.openstreetmap.org/export/embed.html?bbox=73.40%2C4.10%2C73.60%2C4.25&layer=mapnik&marker=4.1748%2C73.5094',
+        'map_embed' => 'https://maps.google.com/maps?q=Ma.+Dydum,+2nd+Floor,+Buruzu+Magu,+20340,+Mal%C3%A9,+Maldives&hl=en&z=15&output=embed',
+        'map_full' => 'https://www.google.com/maps/search/?api=1&query=Ma.+Dydum,+Buruzu+Magu,+Mal%C3%A9,+Maldives',
+        'facebook' => 'https://www.facebook.com/litusmaldives',
+        'instagram' => 'https://www.instagram.com/litusmaldives',
     ],
 ];

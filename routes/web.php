@@ -33,4 +33,20 @@ Route::view('/services', 'pages.services')->name('services');
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/gallery', 'pages.gallery')->name('gallery');
 Route::view('/blog', 'pages.blog')->name('blog');
+Route::get('/blog/{slug}', function (string $slug) {
+    $posts = config('blog.posts');
+    $index = collect($posts)->search(fn ($post) => $post['slug'] === $slug);
+
+    if ($index === false) {
+        abort(404);
+    }
+
+    return view('pages.blog-show', [
+        'post' => $posts[$index],
+        'index' => $index,
+        'prev' => $posts[$index + 1] ?? null,
+        'next' => $posts[$index - 1] ?? null,
+    ]);
+})->name('blog.show');
+Route::view('/career', 'pages.career')->name('career');
 Route::view('/contact', 'pages.contact')->name('contact');

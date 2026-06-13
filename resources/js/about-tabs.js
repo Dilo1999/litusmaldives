@@ -11,10 +11,11 @@ function initAboutTabs() {
   const show = (name) => {
     buttons.forEach((btn) => {
       const active = btn.dataset.tabBtn === name;
-      btn.classList.toggle('bg-litus-primary', active);
+      btn.classList.toggle('bg-litus-navy', active);
       btn.classList.toggle('text-white', active);
-      btn.classList.toggle('bg-transparent', !active);
-      btn.classList.toggle('text-litus-primary', !active);
+      btn.classList.toggle('shadow-[0_4px_14px_rgba(14,23,59,0.2)]', active);
+      btn.classList.toggle('bg-litus-surface', !active);
+      btn.classList.toggle('text-litus-muted', !active);
     });
     panels.forEach((panel) => {
       panel.classList.toggle('is-hidden', panel.dataset.tabPanel !== name);

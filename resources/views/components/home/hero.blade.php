@@ -1,104 +1,122 @@
-<section data-hero-slider class="relative h-screen min-h-[640px] overflow-hidden">
-    {{-- Background layers (image + overlay per slide) --}}
-    @foreach(config('litus.slides') as $index => $slide)
-        <div
-            data-hero-bg
-            @class(['is-active' => $index === 0])
-            class="absolute inset-0 z-0 overflow-hidden pointer-events-none"
-        >
-            <img
-                src="{{ $slide['image'] ?? config('litus.hero_image') }}"
-                alt="{{ $slide['headline'][0] ?? 'Maldives logistics' }}"
-                class="absolute inset-0 w-full h-full object-cover select-none"
-                loading="{{ $index === 0 ? 'eager' : 'lazy' }}"
-            >
-            <div class="absolute inset-0" style="background: {{ $slide['overlay'] }};"></div>
-        </div>
-    @endforeach
+@php($slides = config('litus.slides'))
+@php($first = $slides[0])
 
-    {{-- Left accent bar --}}
-    <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-linear-to-b from-litus-primary to-transparent z-10 pointer-events-none"></div>
+<section
+    data-hero-slider
+    data-hero-slides='@json(collect($slides)->values())'
+    class="relative h-screen min-h-[640px] overflow-hidden"
+>
+    {{-- Keyframes injected once — matches React HeroTransitionStyles --}}
+    <style>
+        @keyframes hero-tile-wipe {
+            from { clip-path: inset(100% 0 0 0); }
+            to   { clip-path: inset(0% 0 0 0); }
+        }
+        @keyframes hero-mosaic-in {
+            from { opacity: 0; transform: scale(0.65); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        @keyframes hero-blind-in {
+            from { transform: scaleY(0); }
+            to   { transform: scaleY(1); }
+        }
+    </style>
 
-    {{-- Slide content --}}
-    <div class="absolute inset-0 flex items-center z-10 pointer-events-none">
-        <div class="max-w-7xl mx-auto px-7 w-full">
-            @foreach(config('litus.slides') as $index => $slide)
-                <div
-                    data-hero-content
-                    @class(['is-active' => $index === 0])
-                    class="max-w-2xl pointer-events-auto"
-                >
-                    {{-- Tag --}}
-                    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 bg-litus-primary/15 border border-litus-primary/30 rounded-sm mb-7">
-                        <div class="w-1.5 h-1.5 rounded-full bg-litus-primary shrink-0"></div>
-                        <span class="text-litus-primary font-bold text-[0.62rem] tracking-[0.22em]">{{ $slide['tag'] }}</span>
+    <img
+        data-hero-base
+        src="{{ $first['image'] }}"
+        alt="Litus Maldives operations"
+        class="absolute inset-0 z-0 h-full w-full object-cover"
+    >
+
+    <div data-hero-effect aria-hidden="true" class="pointer-events-none absolute inset-0 z-[4] overflow-hidden"></div>
+
+    <div class="hero-overlay-gradient pointer-events-none absolute inset-0 z-[3]"></div>
+
+    <div class="pointer-events-none absolute inset-0 z-[5] flex items-center pt-[68px]">
+        <div class="pointer-events-auto mx-auto w-full max-w-[1320px] px-[52px]">
+            <div data-hero-copy class="max-w-[640px]">
+                <div data-hero-copy-inner>
+                    <div class="mb-[22px] inline-flex items-center gap-2">
+                        <div class="h-0.5 w-7 bg-litus-accent"></div>
+                        <span data-hero-eyebrow class="text-[0.65rem] font-bold tracking-[0.22em] text-litus-accent">{{ $first['eyebrow'] }}</span>
                     </div>
 
-                    {{-- Headline --}}
-                    <h1 class="m-0 mb-7 leading-none font-black text-[clamp(3rem,8vw,6.5rem)] tracking-tight">
-                        @foreach($slide['headline'] as $line)
-                            <span @class([
-                                'block',
-                                'text-litus-primary' => $line === $slide['accent'],
-                                'text-white' => $line !== $slide['accent'],
-                            ])>{{ $line }}</span>
-                        @endforeach
+                    <h1 class="m-0 leading-[1.08] tracking-[-0.02em]">
+                        <span data-hero-h1 class="block text-[clamp(2.8rem,7vw,5.6rem)] font-black text-white/88">{{ $first['h1'] }}</span>
+                        <span data-hero-h2 class="block text-[clamp(2.8rem,7vw,5.6rem)] font-black text-white">{{ $first['h2'] }}</span>
                     </h1>
 
-                    {{-- Subtitle --}}
-                    <p class="text-white/65 text-base leading-relaxed max-w-lg m-0 mb-11">{{ $slide['sub'] }}</p>
+                    <p data-hero-sub class="mt-6 mb-10 max-w-[480px] text-[1.05rem] leading-[1.78] text-white/62">{{ $first['sub'] }}</p>
 
-                    {{-- CTAs --}}
-                    <div class="flex flex-wrap gap-3.5">
-                        <a href="{{ route('services') }}" class="inline-flex items-center gap-2 px-9 py-4 bg-litus-primary text-white font-bold text-[0.72rem] tracking-[0.12em] rounded-sm no-underline hover:opacity-90 transition-opacity">
-                            OUR SERVICES
-                            <x-litus-icon name="arrow-right" class="w-4 h-4 shrink-0" />
+                    <div class="flex flex-wrap items-center gap-5">
+                        <a
+                            data-hero-cta
+                            href="{{ route('contact') }}"
+                            class="inline-flex items-center gap-2 rounded-md bg-litus-accent px-[34px] py-3.5 text-[0.82rem] font-bold text-white no-underline shadow-[0_4px_20px_rgba(6,182,212,0.45)] transition-opacity hover:opacity-85"
+                        >
+                            <span data-hero-cta-label>{{ $first['cta'] }}</span>
+                            <x-litus-icon name="arrow-right" class="h-4 w-4" />
                         </a>
-                        <a href="{{ route('contact') }}" class="inline-flex items-center gap-2 px-9 py-4 bg-transparent border border-white/35 text-white font-semibold text-[0.72rem] tracking-[0.12em] rounded-sm no-underline hover:border-litus-primary hover:text-litus-primary transition-colors">
-                            GET IN TOUCH
+                        <a
+                            href="{{ route('services') }}"
+                            class="inline-flex items-center gap-2 rounded-md border border-white/35 px-[30px] py-[13px] text-[0.82rem] font-semibold text-white no-underline transition-all hover:border-litus-accent hover:text-litus-accent"
+                        >
+                            Our Services
                         </a>
                     </div>
                 </div>
-            @endforeach
+            </div>
         </div>
     </div>
 
-    {{-- Pagination dots --}}
-    <div class="absolute bottom-[100px] left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-20">
-        @foreach(config('litus.slides') as $index => $slide)
+    <div class="absolute bottom-[160px] left-[52px] z-[10] flex gap-2">
+        @foreach($slides as $index => $slide)
             <button
                 type="button"
                 data-hero-dot
                 aria-label="Go to slide {{ $index + 1 }}"
-                @class([
-                    'h-2.5 rounded-full border-0 cursor-pointer p-0 transition-all duration-[350ms]',
-                    'w-9 bg-litus-primary' => $index === 0,
-                    'w-2.5 bg-white/35 hover:bg-white/55' => $index !== 0,
-                ])
+                style="height:8px;border-radius:4px;border:none;padding:0;cursor:pointer;transition:all 0.35s;{{ $index === 0 ? 'width:28px;background:#06B6D4;' : 'width:8px;background:rgba(255,255,255,0.35);' }}"
             ></button>
         @endforeach
     </div>
 
-    {{-- Side arrows --}}
-    <button type="button" data-hero-prev aria-label="Previous slide" class="absolute top-1/2 left-7 -translate-y-1/2 z-20 w-12 h-12 border border-white/25 rounded-full bg-litus-navy/45 text-white cursor-pointer hidden sm:flex items-center justify-center backdrop-blur-sm hover:bg-litus-primary hover:border-litus-primary transition-colors">
-        <x-litus-icon name="chevron-left" class="w-5 h-5" />
-    </button>
-    <button type="button" data-hero-next aria-label="Next slide" class="absolute top-1/2 right-7 -translate-y-1/2 z-20 w-12 h-12 border border-white/25 rounded-full bg-litus-navy/45 text-white cursor-pointer hidden sm:flex items-center justify-center backdrop-blur-sm hover:bg-litus-primary hover:border-litus-primary transition-colors">
-        <x-litus-icon name="chevron-right" class="w-5 h-5" />
-    </button>
-
-    {{-- Stats strip --}}
-    <div class="hidden md:grid absolute bottom-0 left-0 right-0 z-20 grid-cols-4 bg-litus-primary/95 backdrop-blur-md">
-        @foreach([
-            ['n' => '500+', 'l' => 'Islands Served'],
-            ['n' => '15+', 'l' => 'Years Experience'],
-            ['n' => '2,000+', 'l' => 'Deliveries / Month'],
-            ['n' => '98%', 'l' => 'On-Time Rate'],
-        ] as $i => $stat)
-            <div @class(['flex flex-col items-center py-5', 'border-r border-white/20' => $i < 3])>
-                <span class="text-white font-black text-3xl leading-none">{{ $stat['n'] }}</span>
-                <span class="text-white/80 text-[0.6rem] tracking-[0.18em] mt-1.5 uppercase">{{ $stat['l'] }}</span>
-            </div>
-        @endforeach
+    <div class="absolute right-[52px] bottom-[148px] z-[10] flex gap-2.5">
+        <button type="button" data-hero-prev aria-label="Previous slide" class="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-white/12 text-white backdrop-blur-[6px] transition-all hover:border-litus-accent hover:bg-litus-accent">
+            <x-litus-icon name="chevron-left" class="h-[18px] w-[18px]" />
+        </button>
+        <button type="button" data-hero-next aria-label="Next slide" class="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-white/12 text-white backdrop-blur-[6px] transition-all hover:border-litus-accent hover:bg-litus-accent">
+            <x-litus-icon name="chevron-right" class="h-[18px] w-[18px]" />
+        </button>
     </div>
+
+    <div class="absolute right-0 bottom-0 left-0 z-[10]">
+        <div class="h-px bg-white/10"></div>
+        <div class="border-t border-white/8 bg-litus-navy/75 backdrop-blur-[16px]">
+            <div class="mx-auto grid max-w-[1320px] grid-cols-1 px-[52px] md:grid-cols-3">
+                @foreach(config('litus.hero_features') as $index => $feature)
+                    <div @class([
+                        'flex items-start gap-4 py-7',
+                        'md:border-r md:border-white/10 md:pr-8' => $index < 2,
+                        'md:ml-8 md:pl-8' => $index > 0,
+                    ])>
+                        <div class="mt-0.5 shrink-0 text-litus-accent">
+                            <x-litus-icon :name="$feature['icon']" class="h-7 w-7" />
+                        </div>
+                        <div>
+                            <div class="mb-1.5 text-[0.85rem] leading-[1.3] font-bold text-white">{{ $feature['title'] }}</div>
+                            <div class="text-[0.76rem] leading-[1.65] text-white/45">{{ $feature['body'] }}</div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    {{-- Keep effect classes in DOM so Tailwind retains them in production builds --}}
+    <div class="hidden" aria-hidden="true">
+        <span class="hero-fx-layer hero-fx-wipe-tile hero-fx-wipe-inner hero-fx-mosaic-tile hero-fx-mosaic-inner hero-fx-blind-strip hero-fx-blind-inner"></span>
+    </div>
+
+    <script type="application/json" data-hero-slides>@json(collect($slides)->values())</script>
 </section>

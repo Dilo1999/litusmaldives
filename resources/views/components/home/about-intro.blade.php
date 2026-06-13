@@ -1,51 +1,35 @@
-<section class="py-24 pb-20 bg-litus-bg">
-    <div class="max-w-7xl mx-auto px-7">
-        <div class="flex flex-col items-center text-center mb-14">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-md bg-litus-primary flex items-center justify-center text-white">
-                    <x-litus-icon name="ship" class="w-[22px] h-[22px]" />
-                </div>
-                <div class="text-left">
-                    <div class="text-litus-primary font-black text-xl tracking-[0.3em] leading-none">LITUS</div>
-                    <div class="text-litus-primary text-[9px] tracking-[0.3em]">MALDIVES</div>
-                </div>
-            </div>
-            <p class="text-litus-muted max-w-2xl leading-relaxed text-[0.95rem] m-0">
-                LITUS Maldives is a specialist freight management company with offices, warehousing, and an exceptional operations team providing end-to-end logistics services throughout the archipelago. Our dedication to absolute standards, specialised staffing, and modern machinery provides an incredible experience for every client.
+<section class="relative py-[50px] pb-20">
+    <div class="litus-orb -right-20 top-0 h-[360px] w-[360px] opacity-40"></div>
+
+    <div class="relative mx-auto max-w-[1260px] px-7">
+        <div class="mb-14 text-center">
+            <h2 class="mb-4 text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.15] font-black text-litus-navy">
+                As the leading logistics provider in the Maldives,<br class="hidden sm:block">
+                we specialise in
+            </h2>
+            <p class="mx-auto m-0 max-w-[660px] text-[0.95rem] leading-[1.88] text-litus-muted">
+                {{ config('litus.intro') }}
             </p>
         </div>
 
-        <div class="flex items-center gap-5 mb-13">
-            <div class="flex-1 h-px bg-litus-primary/10"></div>
-            <span class="text-litus-primary font-bold text-[0.6rem] tracking-[0.24em] whitespace-nowrap">AS THE LEADING LOGISTICS PROVIDER IN THE MALDIVES, WE SPECIALISE IN</span>
-            <div class="flex-1 h-px bg-litus-primary/10"></div>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 border border-litus-primary/8 rounded-lg overflow-hidden">
-            @foreach(config('litus.services') as $i => $service)
-                <div
-                    class="group flex flex-col items-center text-center p-8 border-litus-primary/8 hover:bg-litus-primary transition-colors cursor-pointer animate-on-scroll"
-                    data-animate="fadeInUp"
-                    data-delay="{{ $i * 0.06 }}"
-                    @class([
-                        'border-r' => ($i % 4) !== 3,
-                        'border-b md:border-b-0' => $i < 4,
-                        'border-b' => $i >= 4 && $i < 8,
-                    ])
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+            @foreach(config('litus.home_services') as $service)
+                <a
+                    href="{{ route('services') }}"
+                    class="group litus-card flex cursor-pointer flex-col items-center px-4 py-7 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-litus-navy"
                 >
-                    <div class="w-[52px] h-[52px] rounded-full bg-litus-primary/10 flex items-center justify-center mb-3.5 text-litus-primary group-hover:text-white">
-                        <x-litus-icon :name="$service['icon']" class="w-[22px] h-[22px]" />
+                    <div class="service-card-icon-wrap mb-3.5 flex h-[52px] w-[52px] items-center justify-center rounded-full bg-litus-surface transition-all duration-300">
+                        <x-litus-icon :name="$service['icon']" class="service-card-icon h-[22px] w-[22px] text-litus-accent transition-transform duration-300" />
                     </div>
-                    <span class="text-litus-primary font-bold text-[0.78rem] leading-snug group-hover:text-white">{{ $service['label'] }}</span>
-                </div>
+                    <span class="text-[0.78rem] leading-snug font-bold text-litus-navy transition-colors duration-300 group-hover:text-white">
+                        {{ $service['label'] }}
+                    </span>
+                </a>
             @endforeach
         </div>
 
-        <div class="text-center mt-11">
-            <a href="{{ route('services') }}" class="inline-flex items-center gap-2 px-9 py-3.5 bg-litus-primary text-white font-bold text-[0.7rem] tracking-[0.14em] rounded-sm no-underline hover:bg-litus-primary-dark transition-colors">
-                VIEW ALL SERVICES
-                <x-litus-icon name="arrow-right" class="w-3.5 h-3.5" />
-            </a>
+        <div class="mt-10 text-center">
+            <x-arrow-link :href="route('services')" variant="dark" label="View All Services" />
         </div>
     </div>
 </section>
