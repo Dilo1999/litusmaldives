@@ -33,23 +33,23 @@
 
     <div class="hero-overlay-gradient pointer-events-none absolute inset-0 z-[3]"></div>
 
-    <div class="pointer-events-none absolute inset-0 z-[5] flex items-center pt-[68px]">
-        <div class="pointer-events-auto mx-auto w-full max-w-[1320px] px-[52px]">
-            <div data-hero-copy class="max-w-[640px]">
+    <div class="pointer-events-none absolute inset-0 z-[5] flex items-center pt-[68px] pb-[260px] md:pb-[230px]">
+        <div class="pointer-events-auto mx-auto w-full max-w-[1320px] px-6 sm:px-[52px]">
+            <div data-hero-copy class="max-w-[580px]">
                 <div data-hero-copy-inner>
-                    <div class="mb-[22px] inline-flex items-center gap-2">
+                    <div class="mb-4 inline-flex items-center gap-2 sm:mb-[22px]">
                         <div class="h-0.5 w-7 bg-litus-accent"></div>
                         <span data-hero-eyebrow class="text-[0.65rem] font-bold tracking-[0.22em] text-litus-accent">{{ $first['eyebrow'] }}</span>
                     </div>
 
-                    <h1 class="m-0 leading-[1.08] tracking-[-0.02em]">
-                        <span data-hero-h1 class="block text-[clamp(2.8rem,7vw,5.6rem)] font-black text-white/88">{{ $first['h1'] }}</span>
-                        <span data-hero-h2 class="block text-[clamp(2.8rem,7vw,5.6rem)] font-black text-white">{{ $first['h2'] }}</span>
+                    <h1 class="m-0 leading-[1.06] tracking-[-0.02em]">
+                        <span data-hero-h1 class="block text-[clamp(2rem,5vw,4.25rem)] font-black text-white/88">{{ $first['h1'] }}</span>
+                        <span data-hero-h2 class="block text-[clamp(2rem,5vw,4.25rem)] font-black text-white">{{ $first['h2'] }}</span>
                     </h1>
 
-                    <p data-hero-sub class="mt-6 mb-10 max-w-[480px] text-[1.05rem] leading-[1.78] text-white/62">{{ $first['sub'] }}</p>
+                    <p data-hero-sub class="mt-4 mb-6 max-w-[480px] text-[0.95rem] leading-[1.7] text-white/62 sm:mt-6 sm:mb-8 sm:text-[1.05rem] sm:leading-[1.78]">{{ $first['sub'] }}</p>
 
-                    <div class="flex flex-wrap items-center gap-5">
+                    <div class="flex flex-wrap items-center gap-3 sm:gap-5">
                         <a
                             data-hero-cta
                             href="{{ route('contact') }}"
@@ -70,42 +70,45 @@
         </div>
     </div>
 
-    <div class="absolute bottom-[160px] left-[52px] z-[10] flex gap-2">
-        @foreach($slides as $index => $slide)
-            <button
-                type="button"
-                data-hero-dot
-                aria-label="Go to slide {{ $index + 1 }}"
-                style="height:8px;border-radius:4px;border:none;padding:0;cursor:pointer;transition:all 0.35s;{{ $index === 0 ? 'width:28px;background:#06B6D4;' : 'width:8px;background:rgba(255,255,255,0.35);' }}"
-            ></button>
-        @endforeach
-    </div>
-
-    <div class="absolute right-[52px] bottom-[148px] z-[10] flex gap-2.5">
-        <button type="button" data-hero-prev aria-label="Previous slide" class="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-white/12 text-white backdrop-blur-[6px] transition-all hover:border-litus-accent hover:bg-litus-accent">
-            <x-litus-icon name="chevron-left" class="h-[18px] w-[18px]" />
-        </button>
-        <button type="button" data-hero-next aria-label="Next slide" class="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-white/12 text-white backdrop-blur-[6px] transition-all hover:border-litus-accent hover:bg-litus-accent">
-            <x-litus-icon name="chevron-right" class="h-[18px] w-[18px]" />
-        </button>
-    </div>
-
+    {{-- Bottom zone: slider controls + feature strip (stacked, no overlap) --}}
     <div class="absolute right-0 bottom-0 left-0 z-[10]">
+        <div class="mx-auto flex max-w-[1320px] items-center justify-between px-6 pb-4 sm:px-[52px] sm:pb-5">
+            <div class="flex gap-2">
+                @foreach($slides as $index => $slide)
+                    <button
+                        type="button"
+                        data-hero-dot
+                        aria-label="Go to slide {{ $index + 1 }}"
+                        style="height:8px;border-radius:4px;border:none;padding:0;cursor:pointer;transition:all 0.35s;{{ $index === 0 ? 'width:28px;background:#06B6D4;' : 'width:8px;background:rgba(255,255,255,0.35);' }}"
+                    ></button>
+                @endforeach
+            </div>
+
+            <div class="flex gap-2.5">
+                <button type="button" data-hero-prev aria-label="Previous slide" class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-white/12 text-white backdrop-blur-[6px] transition-all hover:border-litus-accent hover:bg-litus-accent sm:h-11 sm:w-11">
+                    <x-litus-icon name="chevron-left" class="h-[18px] w-[18px]" />
+                </button>
+                <button type="button" data-hero-next aria-label="Next slide" class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-white/12 text-white backdrop-blur-[6px] transition-all hover:border-litus-accent hover:bg-litus-accent sm:h-11 sm:w-11">
+                    <x-litus-icon name="chevron-right" class="h-[18px] w-[18px]" />
+                </button>
+            </div>
+        </div>
+
         <div class="h-px bg-white/10"></div>
         <div class="border-t border-white/8 bg-litus-navy/75 backdrop-blur-[16px]">
-            <div class="mx-auto grid max-w-[1320px] grid-cols-1 px-[52px] md:grid-cols-3">
+            <div class="mx-auto grid max-w-[1320px] grid-cols-1 gap-y-4 px-6 py-5 sm:px-[52px] md:grid-cols-3 md:gap-y-0 md:py-6">
                 @foreach(config('litus.hero_features') as $index => $feature)
                     <div @class([
-                        'flex items-start gap-4 py-7',
-                        'md:border-r md:border-white/10 md:pr-8' => $index < 2,
-                        'md:ml-8 md:pl-8' => $index > 0,
+                        'flex min-w-0 items-start gap-3 sm:gap-4',
+                        'md:border-r md:border-white/10 md:pr-6 lg:pr-8' => $index < 2,
+                        'md:ml-6 md:pl-6 lg:ml-8 lg:pl-8' => $index > 0,
                     ])>
                         <div class="mt-0.5 shrink-0 text-litus-accent">
-                            <x-litus-icon :name="$feature['icon']" class="h-7 w-7" />
+                            <x-litus-icon :name="$feature['icon']" class="h-6 w-6 sm:h-7 sm:w-7" />
                         </div>
-                        <div>
-                            <div class="mb-1.5 text-[0.85rem] leading-[1.3] font-bold text-white">{{ $feature['title'] }}</div>
-                            <div class="text-[0.76rem] leading-[1.65] text-white/45">{{ $feature['body'] }}</div>
+                        <div class="min-w-0">
+                            <div class="mb-1 text-[0.78rem] leading-[1.35] font-bold text-white sm:text-[0.82rem]">{{ $feature['title'] }}</div>
+                            <div class="text-[0.72rem] leading-[1.6] text-white/45 sm:text-[0.76rem] sm:leading-[1.65]">{{ $feature['body'] }}</div>
                         </div>
                     </div>
                 @endforeach
