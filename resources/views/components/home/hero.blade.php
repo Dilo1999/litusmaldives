@@ -71,8 +71,8 @@
     </div>
 
     {{-- Bottom zone: slider controls + feature strip (stacked, no overlap) --}}
-    <div class="absolute right-0 bottom-0 left-0 z-[10]">
-        <div class="mx-auto flex max-w-[1320px] items-center justify-between px-6 pb-4 sm:px-[52px] sm:pb-5">
+    <div class="absolute right-0 bottom-0 left-0 z-[10] w-full max-w-full overflow-hidden">
+        <div class="mx-auto flex w-full max-w-[1320px] items-center justify-between px-6 pb-4 sm:px-[52px] sm:pb-5">
             <div class="flex gap-2">
                 @foreach($slides as $index => $slide)
                     <button
@@ -96,12 +96,11 @@
 
         <div class="h-px bg-white/10"></div>
         <div class="border-t border-white/8 bg-litus-navy/75 backdrop-blur-[16px]">
-            <div class="mx-auto grid max-w-[1320px] grid-cols-1 gap-y-4 px-6 py-5 sm:px-[52px] md:grid-cols-3 md:gap-y-0 md:py-6">
+            <div class="mx-auto grid w-full max-w-[1320px] grid-cols-1 gap-y-4 px-6 py-5 sm:px-[52px] md:grid-cols-3 md:gap-y-0 md:py-6">
                 @foreach(config('litus.hero_features') as $index => $feature)
                     <div @class([
-                        'flex min-w-0 items-start gap-3 sm:gap-4',
-                        'md:border-r md:border-white/10 md:pr-6 lg:pr-8' => $index < 2,
-                        'md:ml-6 md:pl-6 lg:ml-8 lg:pl-8' => $index > 0,
+                        'flex min-w-0 items-start gap-3 sm:gap-4 md:px-4',
+                        'md:border-r md:border-white/10' => $index < 2,
                     ])>
                         <div class="mt-0.5 shrink-0 text-litus-accent">
                             <x-litus-icon :name="$feature['icon']" class="h-6 w-6 sm:h-7 sm:w-7" />

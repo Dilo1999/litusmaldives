@@ -53,11 +53,14 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 @layer base {
   body {
     @apply bg-litus-bg text-litus-navy font-sans antialiased;
+    overflow-x: hidden;
+    max-width: 100%;
   }
 }
 
