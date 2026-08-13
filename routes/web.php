@@ -30,6 +30,26 @@ Route::match(['get', 'head'], 'storage/{path}', function () {
 
 Route::view('/', 'pages.home')->name('home');
 Route::view('/services', 'pages.services')->name('services');
+Route::get('/services/{slug}', function (string $slug) {
+    $services = config('litus.services');
+    $index = collect($services)->search(fn ($service) => ($service['slug'] ?? null) === $slug);
+
+    if ($index === false) {
+        abort(404);
+    }
+
+    $service = $services[$index];
+    $others = collect($services)
+        ->reject(fn ($item) => ($item['slug'] ?? null) === $slug)
+        ->take(3)
+        ->values()
+        ->all();
+
+    return view('pages.service-show', [
+        'service' => $service,
+        'others' => $others,
+    ]);
+})->name('services.show');
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/gallery', 'pages.gallery')->name('gallery');
 Route::view('/blog', 'pages.blog')->name('blog');
