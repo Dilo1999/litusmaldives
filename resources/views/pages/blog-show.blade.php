@@ -9,7 +9,7 @@
             <div class="page-hero-overlay absolute inset-0"></div>
 
             <div class="absolute inset-0 flex items-center pt-[68px]">
-                <div class="mx-auto w-full max-w-[1320px] px-[52px]">
+                <div class="litus-container">
                     <div class="max-w-[720px] hero-copy-enter">
                         <nav class="mb-6 flex flex-wrap items-center gap-2">
                             @foreach([['label' => 'Home', 'route' => 'home'], ['label' => 'Blog', 'route' => 'blog']] as $crumb)
@@ -40,7 +40,7 @@
             </div>
         </section>
 
-        <div class="mx-auto grid max-w-[1260px] grid-cols-1 items-start gap-8 px-7 pt-10 lg:grid-cols-[1fr_320px]">
+        <div class="litus-container grid grid-cols-1 items-start gap-8 pt-10 lg:grid-cols-[1fr_320px]">
             <article>
                 @foreach($post['body'] as $paragraph)
                     <p class="mb-[18px] text-[0.9rem] leading-[1.95] text-litus-muted">{{ $paragraph }}</p>

@@ -53,18 +53,24 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 @layer base {
   body {
     @apply bg-litus-bg text-litus-navy font-sans antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
+    position: relative;
   }
 }
 
 @layer components {
+  .litus-container {
+    @apply mx-auto w-full max-w-[1320px] px-6 lg:px-9;
+  }
+
   .litus-card {
     @apply rounded-[20px] border border-litus-navy/5 bg-white shadow-[0_4px_24px_rgba(14,23,59,0.08),0_1px_4px_rgba(14,23,59,0.04)];
   }
@@ -85,8 +91,8 @@ html {
 
   .hero-overlay-gradient {
     background:
-      linear-gradient(100deg, rgba(14, 23, 59, 0.92) 0%, rgba(14, 23, 59, 0.65) 55%, rgba(14, 23, 59, 0.2) 100%),
-      linear-gradient(to top, rgba(14, 23, 59, 0.8) 0%, transparent 50%);
+      linear-gradient(105deg, rgba(6, 22, 42, 0.82) 0%, rgba(6, 22, 42, 0.45) 48%, rgba(6, 22, 42, 0.2) 100%),
+      linear-gradient(to top, rgba(6, 22, 42, 0.75) 0%, transparent 42%);
   }
 
   .page-hero-overlay {
@@ -234,13 +240,6 @@ html {
 }
 [data-navbar].is-scrolled [data-nav-phone] {
   color: var(--color-litus-navy);
-}
-[data-navbar].is-scrolled [data-nav-cta] {
-  border-color: var(--color-litus-accent);
-  color: var(--color-litus-accent);
-}
-[data-navbar].is-scrolled [data-nav-divider] {
-  background-color: rgb(14 23 59 / 0.12);
 }
 
 [data-gallery-lightbox].is-open { display: flex; }

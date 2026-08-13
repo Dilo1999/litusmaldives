@@ -13,6 +13,7 @@ function initHeroSlider() {
   const h2El = root.querySelector('[data-hero-h2]');
   const subEl = root.querySelector('[data-hero-sub]');
   const ctaLabel = root.querySelector('[data-hero-cta-label]');
+  const secondaryLabel = root.querySelector('[data-hero-secondary-label]');
   const dots = [...root.querySelectorAll('[data-hero-dot]')];
   const prevBtn = root.querySelector('[data-hero-prev]');
   const nextBtn = root.querySelector('[data-hero-next]');
@@ -51,10 +52,26 @@ function initHeroSlider() {
   const setDots = (index) => {
     dots.forEach((dot, i) => {
       const active = i === index;
-      dot.style.width = active ? '28px' : '8px';
-      dot.style.height = '8px';
-      dot.style.borderRadius = '4px';
-      dot.style.background = active ? '#06B6D4' : 'rgba(255,255,255,0.35)';
+      const mark = dot.querySelector('[data-hero-dot-mark]');
+      const num = dot.querySelector('[data-hero-dot-num]');
+
+      if (mark) {
+        mark.style.background = active ? '#06B6D4' : 'rgba(255,255,255,0.35)';
+        mark.style.boxShadow = active ? '0 0 0 4px rgba(6,182,212,0.25)' : 'none';
+      }
+
+      if (num) {
+        num.classList.toggle('text-litus-accent', active);
+        num.classList.toggle('text-white/45', !active);
+      }
+
+      // Fallback for legacy horizontal pill dots
+      if (!mark) {
+        dot.style.width = active ? '28px' : '8px';
+        dot.style.height = '8px';
+        dot.style.borderRadius = '4px';
+        dot.style.background = active ? '#06B6D4' : 'rgba(255,255,255,0.35)';
+      }
     });
   };
 
@@ -66,11 +83,12 @@ function initHeroSlider() {
     void copyInner.offsetWidth;
     copyInner.classList.add('hero-copy-enter');
 
-    if (eyebrowEl) eyebrowEl.textContent = s.eyebrow;
+    if (eyebrowEl) eyebrowEl.textContent = s.eyebrow || '';
     if (h1El) h1El.textContent = s.h1;
     if (h2El) h2El.textContent = s.h2;
     if (subEl) subEl.textContent = s.sub;
     if (ctaLabel) ctaLabel.textContent = s.cta;
+    if (secondaryLabel) secondaryLabel.textContent = s.secondary_cta || 'CONTACT Us';
   };
 
   const buildWipe = (src) => {

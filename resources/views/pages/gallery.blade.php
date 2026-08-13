@@ -13,8 +13,8 @@
 
         @php $samples = config('litus.sample_images'); @endphp
 
-        <section class="px-7 py-[72px] pb-24" data-gallery>
-            <div class="mx-auto max-w-[1260px]">
+        <section class="py-[72px] pb-24" data-gallery>
+            <div class="litus-container">
                 <div class="mb-12 flex flex-wrap gap-2.5">
                     @foreach(['All', 'Cargo', 'Vessels', 'Operations', 'Team'] as $cat)
                         <button

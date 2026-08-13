@@ -1,11 +1,11 @@
 <footer>
     <div class="bg-litus-navy">
-        <div class="mx-auto max-w-[1320px] px-[52px] pt-[60px] pb-[52px]">
+        <div class="litus-container pt-[60px] pb-[52px]">
             <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[1.1fr_1.2fr_1fr_1fr_0.8fr] lg:gap-10">
                 <div>
                     <div class="mb-8">
                         <img
-                            src="{{ config('litus.logo') }}"
+                            src="{{ asset(config('litus.logo')) }}"
                             alt="LITUS Maldives"
                             class="h-11 w-auto object-contain brightness-0 invert"
                         >
@@ -71,7 +71,7 @@
     </div>
 
     <div class="border-t border-white/6 bg-litus-navy-dark">
-        <div class="mx-auto flex max-w-[1320px] flex-wrap items-center justify-between gap-4 px-[52px] py-5">
+        <div class="litus-container flex flex-wrap items-center justify-between gap-4 py-5">
             <div class="flex flex-wrap gap-7">
                 @foreach(['Privacy Policy', 'Terms', 'Cancellation Policy', 'Copyrights', 'Fees and Charges'] as $policy)
                     <a href="#" class="text-[0.73rem] text-white/45 no-underline transition-colors hover:text-litus-accent">{{ $policy }}</a>
@@ -86,7 +86,7 @@
     </div>
 
     <div class="bg-litus-navy">
-        <div class="mx-auto max-w-[1320px] px-[52px] py-3 text-center">
+        <div class="litus-container py-3 text-center">
             <span class="text-[0.75rem] font-medium text-white">© {{ date('Y') }} LITUS Maldives | All Rights Reserved.</span>
         </div>
     </div>

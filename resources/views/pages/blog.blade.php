@@ -13,8 +13,8 @@
             :image="config('litus.hero_image')"
         />
 
-        <section class="px-7 pt-12 pb-20" data-blog>
-            <div class="mx-auto max-w-[1260px]">
+        <section class="pt-12 pb-20" data-blog>
+            <div class="litus-container">
                 <div class="mb-10 flex flex-wrap gap-2.5">
                     @foreach(['All', 'Logistics', 'News', 'Insights', 'Industry'] as $cat)
                         <button

@@ -10,7 +10,7 @@
     />
 
     <section class="py-24 bg-white">
-        <div class="max-w-3xl mx-auto px-7 text-center">
+        <div class="litus-container max-w-3xl text-center">
             <p class="text-litus-muted leading-relaxed text-[0.95rem] mb-8">
                 LITUS Maldives is always looking for talented individuals passionate about logistics and supply chain excellence. Send your CV to
                 <a href="mailto:{{ config('litus.contact.email') }}" class="text-litus-primary font-semibold no-underline hover:underline">{{ config('litus.contact.email') }}</a>

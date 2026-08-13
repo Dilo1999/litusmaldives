@@ -11,8 +11,8 @@
             :image="config('litus.sample_images')[0]"
         />
 
-        <section class="px-7 pt-8">
-            <div class="mx-auto grid max-w-[1260px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <section class="pt-8">
+            <div class="litus-container grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 @foreach([
                     ['icon' => 'map-pin', 'title' => 'Our Office', 'body' => config('litus.contact.address')],
                     ['icon' => 'phone', 'title' => 'Phone', 'body' => implode("\n", config('litus.contact.phones'))],
@@ -30,8 +30,8 @@
             </div>
         </section>
 
-        <section class="px-7 pt-7 pb-20">
-            <div class="mx-auto grid max-w-[1260px] grid-cols-1 gap-6 lg:grid-cols-[1fr_1.1fr]">
+        <section class="pt-7 pb-20">
+            <div class="litus-container grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.1fr]">
                 <div class="litus-card overflow-hidden rounded-3xl">
                     <iframe
                         title="Litus Maldives Location"

@@ -12,7 +12,7 @@
     <div class="page-hero-overlay absolute inset-0"></div>
 
     <div class="absolute inset-0 flex items-center pt-[68px]">
-        <div class="mx-auto w-full max-w-[1320px] px-[52px]">
+        <div class="mx-auto w-full max-w-[1320px] px-6 lg:px-9">
             <div class="max-w-[640px] animate-on-scroll" data-animate="fadeInUp">
                 @if($eyebrow)
                     <div class="mb-5 inline-flex items-center gap-2">

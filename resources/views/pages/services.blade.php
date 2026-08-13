@@ -13,8 +13,8 @@
             ctaRoute="contact"
         />
 
-        <section class="px-7 pt-14">
-            <div class="mx-auto max-w-[1260px] text-center">
+        <section class="pt-14">
+            <div class="litus-container text-center">
                 <x-section-badge text="WHAT WE DO" surface="white" class="justify-center" />
                 <h2 class="mb-4 text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.15] font-black text-litus-navy">
                     Our Services Make Your Work More Productive
@@ -25,8 +25,8 @@
             </div>
         </section>
 
-        <section class="px-7 pt-11 pb-20">
-            <div class="relative mx-auto grid max-w-[1260px] grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <section class="pt-11 pb-20">
+            <div class="relative litus-container grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
                 @foreach(config('litus.services') as $i => $service)
                     <div class="litus-card group overflow-hidden transition-all duration-250 hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(6,182,212,0.14),0_2px_8px_rgba(14,23,59,0.06)]">
                         <div class="relative h-[150px] overflow-hidden">

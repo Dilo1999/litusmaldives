@@ -7,12 +7,12 @@ function initNav() {
   const mobileMenu = document.querySelector('[data-mobile-menu]');
   const logo = nav?.querySelector('[data-nav-logo]');
   const links = nav ? [...nav.querySelectorAll('[data-nav-link]')] : [];
-  const phone = nav?.querySelector('[data-nav-phone]');
-  const phoneIcon = nav?.querySelector('[data-nav-phone-icon]');
   const cta = nav?.querySelector('[data-nav-cta]');
-  const divider = nav?.querySelector('[data-nav-divider]');
 
   if (!nav) return;
+
+  const ctaClasses =
+    'inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-litus-accent to-cyan-400 px-6 py-2.5 text-[0.82rem] font-bold tracking-[0.04em] text-white no-underline shadow-[0_4px_18px_rgba(6,182,212,0.4)] transition-all duration-250 hover:opacity-90';
 
   const updateSolid = () => {
     const scrolled = window.scrollY > 80;
@@ -31,6 +31,7 @@ function initNav() {
     links.forEach((link) => {
       const active = link.dataset.active === 'true';
       link.classList.remove(
+        'text-white/90',
         'text-white/82',
         'hover:text-litus-accent',
         'text-litus-muted',
@@ -45,36 +46,15 @@ function initNav() {
         } else {
           link.classList.add('border-transparent', 'text-litus-muted', 'hover:text-litus-accent');
         }
+      } else if (active) {
+        link.classList.add('border-litus-accent', 'font-bold', 'text-litus-accent');
       } else {
-        if (active) {
-          link.classList.add('border-litus-accent', 'font-bold', 'text-litus-accent');
-        } else {
-          link.classList.add('border-transparent', 'text-white/82', 'hover:text-litus-accent');
-        }
+        link.classList.add('border-transparent', 'text-white/90', 'hover:text-litus-accent');
       }
     });
 
-    if (phone) {
-      phone.classList.toggle('text-white', !scrolled);
-      phone.classList.toggle('text-litus-navy', scrolled);
-    }
-
-    if (phoneIcon) {
-      phoneIcon.classList.toggle('text-white/70', !scrolled);
-      phoneIcon.classList.toggle('text-litus-accent', scrolled);
-    }
-
-    if (divider) {
-      divider.classList.toggle('bg-white/20', !scrolled);
-      divider.classList.toggle('bg-litus-navy/12', scrolled);
-    }
-
     if (cta) {
-      if (scrolled) {
-        cta.className = 'rounded-md border border-litus-accent bg-transparent px-5 py-2 text-[0.72rem] font-semibold tracking-[0.08em] text-litus-accent no-underline transition-all duration-250 hover:bg-litus-accent hover:text-white';
-      } else {
-        cta.className = 'rounded-md border border-white/45 bg-transparent px-5 py-2 text-[0.72rem] font-semibold tracking-[0.08em] text-white no-underline transition-all duration-250 hover:border-litus-accent hover:bg-litus-accent hover:text-white';
-      }
+      cta.className = ctaClasses;
     }
   };
 
