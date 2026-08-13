@@ -108,33 +108,41 @@
 
     {{-- Key Members --}}
     <section class="relative overflow-hidden bg-white py-[70px]">
-        <div class="litus-container">
-            <div class="mb-10 text-center">
-                <x-section-badge text="MEET OUR KEY MEMBERS" surface="muted" class="justify-center" />
+        <div class="pointer-events-none absolute inset-y-10 left-0 w-24 opacity-40 md:w-32" style="background-image:radial-gradient(circle, rgba(14,23,59,0.12) 1px, transparent 1.5px); background-size:14px 14px;"></div>
+        <div class="pointer-events-none absolute inset-y-10 right-0 w-24 opacity-40 md:w-32" style="background-image:radial-gradient(circle, rgba(14,23,59,0.12) 1px, transparent 1.5px); background-size:14px 14px;"></div>
+
+        <div class="relative litus-container">
+            <div class="mb-12 text-center">
+                <h2 class="m-0 text-[0.78rem] font-bold tracking-[0.2em] text-litus-accent md:text-[0.85rem]">
+                    MEET OUR KEY MEMBERS
+                </h2>
             </div>
 
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach(config('litus.key_members') as $i => $member)
-                    <div class="litus-card flex items-center gap-4 rounded-[18px] px-5 py-4">
-                        <div class="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-full border-2 border-litus-accent/25">
+                    <div class="flex min-h-[150px] overflow-hidden rounded-[22px] bg-white shadow-[0_8px_28px_rgba(14,23,59,0.08)]">
+                        <div class="relative flex w-[46%] shrink-0 items-end justify-center overflow-hidden">
+                            <div class="absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-[42%] rounded-full bg-litus-navy/[0.06]"></div>
                             <img
-                                src="{{ !empty($member['image']) ? asset($member['image']) : ($samples[($i + 6) % count($samples)] ?? config('litus.hero_image')) }}"
+                                src="{{ !empty($member['image']) ? (str_starts_with($member['image'], 'http') ? $member['image'] : asset($member['image'])) : ($samples[($i + 6) % count($samples)] ?? config('litus.hero_image')) }}"
                                 alt="{{ $member['name'] }}"
-                                class="h-full w-full object-cover"
+                                class="relative z-[1] h-full max-h-[160px] w-auto max-w-[95%] object-contain object-bottom"
                                 loading="lazy"
                             >
                         </div>
-                        <div class="min-w-0 flex-1">
-                            <div class="text-[0.92rem] font-bold text-litus-navy">{{ $member['name'] }}</div>
-                            <div class="mt-0.5 text-[0.72rem] text-litus-muted">{{ $member['role'] }}</div>
+                        <div class="flex min-w-0 flex-1 flex-col justify-center py-5 pr-5 pl-2">
+                            <div class="text-[0.82rem] font-black tracking-[0.04em] text-litus-navy uppercase">
+                                {{ $member['name'] }}
+                            </div>
+                            <div class="mt-1 text-[0.78rem] text-litus-muted">{{ $member['role'] }}</div>
+                            <a
+                                href="{{ $member['linkedin'] ?? '#' }}"
+                                aria-label="{{ $member['name'] }} on LinkedIn"
+                                class="mt-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-litus-accent text-white no-underline transition-opacity hover:opacity-90"
+                            >
+                                <x-litus-icon name="linkedin" class="h-3.5 w-3.5" />
+                            </a>
                         </div>
-                        <a
-                            href="{{ $member['linkedin'] ?? '#' }}"
-                            aria-label="{{ $member['name'] }} on LinkedIn"
-                            class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-litus-accent/12 text-litus-accent no-underline transition-colors hover:bg-litus-accent hover:text-white"
-                        >
-                            <x-litus-icon name="linkedin" class="h-3.5 w-3.5" />
-                        </a>
                     </div>
                 @endforeach
             </div>

@@ -250,10 +250,24 @@ return [
     ],
 
     'key_members' => [
-        ['name' => 'Mohamed Shiraf', 'role' => 'Key Member', 'image' => null, 'linkedin' => '#'],
-        ['name' => 'Bishal Shah', 'role' => 'Key Member', 'image' => null, 'linkedin' => '#'],
-        ['name' => 'Mohamed Farhad', 'role' => 'Key Member', 'image' => null, 'linkedin' => '#'],
-        ['name' => 'Idrees Rahman', 'role' => 'Key Member', 'image' => null, 'linkedin' => '#'],
+        [
+            'name' => 'Bishal Shah',
+            'role' => 'Logistics Executive',
+            'image' => 'https://www.litusmaldives.com/wp-content/uploads/2024/11/9-1024x1024.webp',
+            'linkedin' => '#',
+        ],
+        [
+            'name' => 'Mohamed Farhad',
+            'role' => 'Clearance Officer',
+            'image' => 'https://www.litusmaldives.com/wp-content/uploads/2024/11/8-1024x1024.webp',
+            'linkedin' => '#',
+        ],
+        [
+            'name' => 'Idrees Rahman',
+            'role' => 'Clearance Officer',
+            'image' => 'https://www.litusmaldives.com/wp-content/uploads/2024/11/7-1024x1024.webp',
+            'linkedin' => '#',
+        ],
     ],
 
     'specialties' => [
