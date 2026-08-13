@@ -81,6 +81,16 @@ html {
     filter: blur(48px);
   }
 
+  @media (min-width: 1024px) {
+    .specialty-slant-stripe {
+      clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    .specialty-slant-image {
+      clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 2% 100%);
+    }
+  }
+
   .litus-soft-input {
     @apply w-full rounded-xl border-[1.5px] border-transparent bg-litus-surface px-4 py-3 text-[0.85rem] text-litus-navy outline-none transition-colors;
   }

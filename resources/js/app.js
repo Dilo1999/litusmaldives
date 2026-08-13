@@ -6,3 +6,4 @@ import './faq';
 import './gallery';
 import './blog-filter';
 import './about-tabs';
+import './clients-carousel';

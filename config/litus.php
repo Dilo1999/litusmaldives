@@ -168,8 +168,8 @@ return [
     'testimonial' => [
         'quote' => 'LITUS Maldives: Setting the benchmark in logistics. Experience our excellence with seamless operations, secure handling, and efficient transport solutions that exceed expectations.',
         'name' => 'Mohamed Zahid',
-        'role' => 'CEO',
-        'image' => 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop&auto=format',
+        'role' => 'Group Chairman',
+        'image' => 'images/home/Zaaa-120x120.jpg',
     ],
 
     'operations_images' => [0, 1, 2, 3, 4, 5, 6],
@@ -211,28 +211,58 @@ return [
         ['tag' => 'NEWS', 'date' => 'Oct 9, 2024', 'title' => 'Litus Maldives Fleet Expansion: Two New Vessels', 'excerpt' => 'We welcomed two new cargo vessels to our inter-atoll fleet, increasing weekly freight capacity by 35% and enabling direct connections to 18 additional islands.'],
     ],
 
+    'about' => [
+        'eyebrow' => 'ABOUT US',
+        'h1' => 'Delivering Excellence.',
+        'h1_accent' => 'Building Trust.',
+        'intro' => 'LITUS Maldives Pvt Ltd is a reputable project logistics management company that offers comprehensive logistics solutions, providing end-to-end logistics services including transportation of supplies and equipment, supply chain management, customs clearance, warehousing, and rentals, all tailored to meet our clients’ unique needs.',
+        'vision' => 'Most preferred logistics partner!',
+        'mission' => 'To provide end-to-end total logistics solutions.',
+        'hero_image' => 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1920&h=1080&fit=crop&auto=format',
+        'specialty_image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=900&fit=crop&auto=format',
+    ],
+
     'team' => [
-        ['name' => 'Mohamed Azim', 'role' => 'Managing Director'],
-        ['name' => 'Ali Hameed', 'role' => 'Operations Manager'],
-        ['name' => 'Fathimath Nisha', 'role' => 'Customs & Compliance'],
-        ['name' => 'Ali Shareef', 'role' => 'Logistics Coordinator'],
+        [
+            'name' => 'Mohamed Zahid',
+            'role' => 'CEO',
+            'image' => 'images/home/Zaaa-120x120.jpg',
+            'linkedin' => '#',
+        ],
+        [
+            'name' => 'Asif Rasheed',
+            'role' => 'Chief Strategy & Marketing Officer',
+            'image' => null,
+            'linkedin' => '#',
+        ],
+        [
+            'name' => 'Kalpesh Thilanka',
+            'role' => 'Manager',
+            'image' => null,
+            'linkedin' => '#',
+        ],
+        [
+            'name' => 'Ali Waseem',
+            'role' => 'Manager',
+            'image' => null,
+            'linkedin' => '#',
+        ],
     ],
 
     'key_members' => [
-        ['name' => 'Ahmed Rasheed', 'role' => 'Fleet Manager'],
-        ['name' => 'Mariyam Shifa', 'role' => 'Client Relations'],
-        ['name' => 'Ibrahim Naufal', 'role' => 'Warehouse Supervisor'],
+        ['name' => 'Mohamed Shiraf', 'role' => 'Key Member', 'image' => null, 'linkedin' => '#'],
+        ['name' => 'Bishal Shah', 'role' => 'Key Member', 'image' => null, 'linkedin' => '#'],
+        ['name' => 'Mohamed Farhad', 'role' => 'Key Member', 'image' => null, 'linkedin' => '#'],
+        ['name' => 'Idrees Rahman', 'role' => 'Key Member', 'image' => null, 'linkedin' => '#'],
     ],
 
     'specialties' => [
-        'Handling documentation and customs formalities for all Maldivian ports of entry',
-        'Coordinating multi-modal freight across sea, air, and road networks',
-        'Managing bonded warehouse operations in Malé for transhipment cargo',
-        'Providing dedicated project logistics for resort construction and FF&E',
-        'Operating regular scheduled supply vessels to inhabited and resort islands',
-        'Offering 24/7 emergency charter services for time-critical shipments',
-        'Partnering with international freight forwarders for seamless door-to-door delivery',
-        'Ensuring full insurance coverage on all cargo movements handled by Litus',
+        'Experienced and professional team ensuring high-quality service.',
+        'Strong connection with authorities (Customs Authority, Ports Limited).',
+        'High-quality service with a strong focus on reliability.',
+        'Established delivery network for reliable and on-time shipments.',
+        'Real-time shipment tracking and updates.',
+        'Assistance with import/export license renewals.',
     ],
 
     'gallery_items' => [

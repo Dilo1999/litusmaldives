@@ -227,7 +227,7 @@
         <div class="litus-container text-center">
             <div class="mb-8">
                 <img
-                    src="{{ $testimonial['image'] }}"
+                    src="{{ asset($testimonial['image']) }}"
                     alt="{{ $testimonial['name'] }}"
                     class="mx-auto block h-[88px] w-[88px] rounded-full border-[3px] border-litus-surface object-cover shadow-[0_4px_20px_rgba(14,23,59,0.12)]"
                     loading="lazy"

@@ -3,119 +3,224 @@
 @section('title', 'About Us')
 
 @section('content')
-    <div class="bg-litus-bg">
-        <x-page-hero
-            eyebrow="MALDIVES' LEADING LOGISTICS COMPANY"
-            title="About Us"
-            subtitle="The leading logistics provider in the Maldives — since 2009."
-            :image="config('litus.sample_images')[0]"
-            cta="Our Services"
-            ctaRoute="services"
-        />
+@php
+    $about = config('litus.about');
+    $samples = config('litus.sample_images');
+@endphp
 
-        <section class="relative px-0 pt-16">
-            <div class="litus-orb -left-20 top-0 h-[360px] w-[360px] opacity-45"></div>
-            <div class="relative litus-container">
-                <div class="litus-card rounded-[28px] px-8 py-12 md:px-14 md:py-[52px]">
-                    <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-[72px]">
-                        <div data-about-tabs>
-                            <x-section-badge text="WHO WE ARE" />
-                            <h2 class="mb-5 text-[clamp(1.8rem,3.5vw,2.4rem)] leading-[1.15] font-black text-litus-navy">About LITUS Maldives</h2>
-                            <p class="mb-4 text-[0.92rem] leading-[1.88] text-litus-muted">
-                                LITUS Maldives is a specialist freight management company with offices, warehousing, and an exceptional operations team providing end-to-end logistics services throughout the archipelago.
-                            </p>
-                            <p class="mb-7 text-[0.92rem] leading-[1.88] text-litus-muted">
-                                We understand the unique challenges of operating in the Maldives — island geography, tidal schedules, customs regulations, and the demands of a world-class tourism industry.
-                            </p>
+<div class="overflow-x-clip bg-litus-bg">
 
-                            <div class="mb-6 flex gap-2.5">
-                                <button type="button" data-tab-btn="vision" class="cursor-pointer rounded-full border-0 bg-litus-navy px-[22px] py-2.5 text-[0.72rem] font-bold text-white shadow-[0_4px_14px_rgba(14,23,59,0.2)]">Our Vision</button>
-                                <button type="button" data-tab-btn="mission" class="cursor-pointer rounded-full border-0 bg-litus-surface px-[22px] py-2.5 text-[0.72rem] font-bold text-litus-muted">Our Mission</button>
-                            </div>
+    {{-- Hero --}}
+    <section class="relative min-h-[280px] overflow-hidden pb-16 pt-[72px] md:min-h-[320px] md:pb-20">
+        <img
+            src="{{ $about['hero_image'] }}"
+            alt="About Litus Maldives"
+            class="absolute inset-0 h-full w-full object-cover"
+        >
+        <div class="absolute inset-0 bg-gradient-to-r from-litus-navy/90 via-litus-navy/65 to-litus-navy/25"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-litus-navy/50 via-transparent to-litus-navy/20"></div>
 
-                            <p data-tab-panel="vision" class="m-0 text-[0.88rem] leading-[1.85] text-litus-muted">
-                                To be the most trusted and innovative logistics partner in the Indian Ocean region, enabling commerce and connectivity across every inhabited island of the Maldives.
-                            </p>
-                            <p data-tab-panel="mission" class="is-hidden m-0 text-[0.88rem] leading-[1.85] text-litus-muted">
-                                To deliver dependable, efficient, and cost-effective freight solutions that empower businesses and communities in the Maldives through world-class service standards.
-                            </p>
-                        </div>
+        <div class="relative litus-container flex min-h-[180px] items-center py-6 md:min-h-[200px] md:py-8">
+            <div class="max-w-[720px]">
+                <div class="mb-5 inline-flex items-center gap-2">
+                    <div class="h-0.5 w-7 bg-litus-accent"></div>
+                    <span class="text-[0.65rem] font-bold tracking-[0.22em] text-litus-accent">{{ $about['eyebrow'] }}</span>
+                </div>
 
-                        <div class="relative">
-                            <div class="overflow-hidden rounded-[20px]">
-                                <x-litus-sample-img :index="1" alt="About Litus" class="block h-[400px] w-full object-cover" />
-                            </div>
-                            <div class="absolute -bottom-4 -left-4 rounded-2xl bg-litus-accent px-6 py-[18px] shadow-[0_8px_24px_rgba(6,182,212,0.35)]">
-                                <div class="text-[1.8rem] leading-none font-black text-white">15+</div>
-                                <div class="mt-1 text-[0.6rem] tracking-[0.14em] text-white/80">YEARS</div>
-                            </div>
-                        </div>
+                <h1 class="m-0 text-[clamp(2.4rem,5.5vw,4.4rem)] leading-[1.08] font-black tracking-[-0.02em] text-white">
+                    {{ $about['h1'] }}
+                    <span class="block text-litus-accent">{{ $about['h1_accent'] }}</span>
+                </h1>
+
+                <p class="mt-6 mb-0 max-w-[580px] text-[0.95rem] leading-[1.85] text-white/75 md:text-[1.02rem]">
+                    {{ $about['intro'] }}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {{-- Vision & Mission card --}}
+    <section class="relative z-[2] -mt-10 mb-4 md:-mt-14">
+        <div class="litus-container">
+            <div class="litus-card grid grid-cols-1 overflow-hidden rounded-[28px] shadow-[0_16px_48px_rgba(14,23,59,0.12)] md:grid-cols-2">
+                <div class="flex items-start gap-5 px-8 py-10 md:px-12 md:py-12">
+                    <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-litus-accent text-white">
+                        <x-litus-icon name="target" class="h-7 w-7" />
+                    </div>
+                    <div>
+                        <h2 class="m-0 text-[1.05rem] font-black tracking-[0.06em] text-litus-navy">OUR VISION</h2>
+                        <div class="mt-2.5 h-0.5 w-10 rounded-full bg-litus-accent"></div>
+                        <p class="mt-3.5 mb-0 text-[0.95rem] leading-[1.7] text-litus-muted">{{ $about['vision'] }}</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-5 border-t border-litus-navy/8 px-8 py-10 md:border-t-0 md:border-l md:px-12 md:py-12">
+                    <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-litus-accent text-white">
+                        <x-litus-icon name="flag" class="h-7 w-7" />
+                    </div>
+                    <div>
+                        <h2 class="m-0 text-[1.05rem] font-black tracking-[0.06em] text-litus-navy">OUR MISSION</h2>
+                        <div class="mt-2.5 h-0.5 w-10 rounded-full bg-litus-accent"></div>
+                        <p class="mt-3.5 mb-0 text-[0.95rem] leading-[1.7] text-litus-muted">{{ $about['mission'] }}</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="pt-10 pb-20">
-            <div class="relative litus-container">
-                <div class="litus-card rounded-[28px] px-8 py-12 md:px-14 md:py-[52px]">
-                    <div class="mb-12 text-center">
-                        <x-section-badge text="OUR PEOPLE" surface="white" class="justify-center" />
-                        <h2 class="mb-3 text-[clamp(1.8rem,3.5vw,2.4rem)] font-black text-litus-navy">Meet Our Team</h2>
-                        <p class="mx-auto max-w-lg text-[0.88rem] leading-relaxed text-litus-muted">
-                            Our dedicated professionals bring decades of combined logistics and maritime expertise to every shipment.
-                        </p>
+    {{-- Leadership --}}
+    <section class="relative overflow-hidden py-[70px]">
+        <div class="litus-orb -right-20 top-10 h-[320px] w-[320px] opacity-35"></div>
+
+        <div class="relative litus-container">
+            <div class="mb-12 text-center">
+                <x-section-badge text="MEET OUR TEAM" surface="white" class="justify-center" />
+                <h2 class="m-0 text-[clamp(1.9rem,3.5vw,2.6rem)] font-black text-litus-navy">Our Leadership</h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                @foreach(config('litus.team') as $i => $member)
+                    <div class="litus-card overflow-hidden rounded-[20px] text-center transition-all duration-250 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(14,23,59,0.12)]">
+                        <div class="aspect-[4/5] overflow-hidden bg-litus-surface">
+                            <img
+                                src="{{ !empty($member['image']) ? asset($member['image']) : ($samples[($i + 2) % count($samples)] ?? config('litus.hero_image')) }}"
+                                alt="{{ $member['name'] }}"
+                                class="h-full w-full object-cover"
+                                loading="lazy"
+                            >
+                        </div>
+                        <div class="px-5 pt-5 pb-6">
+                            <div class="text-[1rem] font-bold text-litus-navy">{{ $member['name'] }}</div>
+                            <div class="mt-1 text-[0.78rem] text-litus-muted">{{ $member['role'] }}</div>
+                            <a
+                                href="{{ $member['linkedin'] ?? '#' }}"
+                                aria-label="{{ $member['name'] }} on LinkedIn"
+                                class="mt-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-litus-accent/12 text-litus-accent no-underline transition-colors hover:bg-litus-accent hover:text-white"
+                            >
+                                <x-litus-icon name="linkedin" class="h-4 w-4" />
+                            </a>
+                        </div>
                     </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
 
-                    <div class="mb-12 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4">
-                        @foreach(config('litus.team') as $i => $member)
-                            <div class="rounded-[20px] border border-litus-navy/8 bg-litus-surface/50 p-8 text-center">
-                                <div class="mx-auto mb-4 h-[88px] w-[88px] overflow-hidden rounded-full border-[3px] border-white">
-                                    <x-litus-sample-img :index="$i + 2" :alt="$member['name']" class="h-full w-full object-cover" />
-                                </div>
-                                <div class="text-[0.88rem] font-bold text-litus-navy">{{ $member['name'] }}</div>
-                                <div class="mt-1 text-[0.72rem] tracking-wide text-litus-muted">{{ $member['role'] }}</div>
-                            </div>
+    {{-- Key Members --}}
+    <section class="relative overflow-hidden bg-white py-[70px]">
+        <div class="litus-container">
+            <div class="mb-10 text-center">
+                <x-section-badge text="MEET OUR KEY MEMBERS" surface="muted" class="justify-center" />
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                @foreach(config('litus.key_members') as $i => $member)
+                    <div class="litus-card flex items-center gap-4 rounded-[18px] px-5 py-4">
+                        <div class="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-full border-2 border-litus-accent/25">
+                            <img
+                                src="{{ !empty($member['image']) ? asset($member['image']) : ($samples[($i + 6) % count($samples)] ?? config('litus.hero_image')) }}"
+                                alt="{{ $member['name'] }}"
+                                class="h-full w-full object-cover"
+                                loading="lazy"
+                            >
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <div class="text-[0.92rem] font-bold text-litus-navy">{{ $member['name'] }}</div>
+                            <div class="mt-0.5 text-[0.72rem] text-litus-muted">{{ $member['role'] }}</div>
+                        </div>
+                        <a
+                            href="{{ $member['linkedin'] ?? '#' }}"
+                            aria-label="{{ $member['name'] }} on LinkedIn"
+                            class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-litus-accent/12 text-litus-accent no-underline transition-colors hover:bg-litus-accent hover:text-white"
+                        >
+                            <x-litus-icon name="linkedin" class="h-3.5 w-3.5" />
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- What Sets Us Apart --}}
+    <section class="relative overflow-hidden bg-litus-bg py-[80px]">
+        <div class="relative litus-container">
+            <div class="overflow-hidden rounded-[28px] bg-white shadow-[0_16px_48px_rgba(14,23,59,0.1)] lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+                <div class="relative z-[1] px-8 py-10 md:px-12 md:py-14 lg:pr-6">
+                    <div class="mb-3 text-[0.68rem] font-bold tracking-[0.22em] text-litus-accent">OUR SPECIALTIES</div>
+                    <h2 class="mb-8 text-[clamp(1.9rem,3.5vw,2.6rem)] leading-[1.15] font-black text-litus-navy">
+                        What Sets Us Apart
+                    </h2>
+
+                    <ul class="m-0 flex list-none flex-col gap-4 p-0">
+                        @foreach(config('litus.specialties') as $point)
+                            <li class="flex items-start gap-3.5">
+                                <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-litus-accent text-white">
+                                    <x-litus-icon name="check" class="h-3.5 w-3.5" />
+                                </span>
+                                <span class="text-[0.92rem] leading-[1.6] text-litus-muted">{{ $point }}</span>
+                            </li>
                         @endforeach
-                    </div>
+                    </ul>
+                </div>
 
-                    <div class="border-t border-litus-navy/8 pt-10">
-                        <h3 class="mb-8 text-center font-bold text-litus-navy">Meet Our Key Members</h3>
-                        <div class="flex flex-wrap justify-center gap-12">
-                            @foreach(config('litus.key_members') as $member)
-                                <div class="text-center">
-                                    <div class="mx-auto mb-3 h-[76px] w-[76px] overflow-hidden rounded-full border-2 border-litus-accent/30">
-                                        <x-litus-sample-img :index="$loop->index + 6" :alt="$member['name']" class="h-full w-full object-cover" />
-                                    </div>
-                                    <div class="text-[0.82rem] font-semibold text-litus-navy">{{ $member['name'] }}</div>
-                                    <div class="mt-0.5 text-[0.68rem] text-litus-muted">{{ $member['role'] }}</div>
-                                </div>
-                            @endforeach
-                        </div>
+                <div class="relative min-h-[300px] sm:min-h-[360px] lg:min-h-[480px]">
+                    <div class="specialty-slant-stripe absolute inset-0 hidden bg-litus-accent lg:block"></div>
+                    <div class="specialty-slant-image absolute inset-0 overflow-hidden">
+                        <img
+                            src="{{ $about['specialty_image'] }}"
+                            alt="Litus Maldives specialties"
+                            class="absolute inset-0 h-full w-full object-cover"
+                            loading="lazy"
+                        >
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="py-[50px]">
-            <div class="litus-container">
-                <div class="litus-card rounded-3xl px-8 py-11 md:px-[52px]">
-                    <div class="mb-9 text-center">
-                        <span class="text-[0.62rem] font-bold tracking-[0.22em] text-litus-accent">TRUSTED BY LEADING BRANDS</span>
-                        <h2 class="mt-2.5 mb-0 text-[1.7rem] font-black text-litus-navy">We've Partnered With</h2>
-                    </div>
-                    <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 md:gap-x-[52px]">
-                        @foreach(config('litus.partners') as $partner)
+    {{-- Clients / Partners --}}
+    <section class="relative overflow-hidden bg-litus-surface py-[70px]" data-clients-carousel>
+        <div class="litus-container">
+            <div class="mb-12 text-center">
+                <div class="mb-3 text-[0.68rem] font-bold tracking-[0.22em] text-litus-accent">OUR CLIENTS</div>
+                <h2 class="m-0 text-[clamp(1.7rem,3vw,2.3rem)] font-black text-litus-navy">Trusted By Leading Brands</h2>
+                <div class="mx-auto mt-4 h-0.5 w-12 rounded-full bg-litus-accent"></div>
+            </div>
+
+            <div class="overflow-hidden">
+                <div
+                    class="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                    data-clients-track
+                >
+                    @foreach(config('litus.partners') as $partner)
+                        <div
+                            class="flex h-[120px] w-[min(220px,70vw)] shrink-0 snap-center items-center justify-center rounded-2xl border border-litus-navy/6 bg-white px-6 shadow-[0_4px_18px_rgba(14,23,59,0.06)] transition-shadow duration-200 hover:shadow-[0_8px_28px_rgba(14,23,59,0.1)] md:h-[130px] md:w-[220px]"
+                            data-clients-card
+                        >
                             <img
                                 src="{{ asset($partner['logo']) }}"
                                 alt="{{ $partner['name'] }}"
                                 title="{{ $partner['name'] }}"
-                                class="h-16 w-auto max-w-[200px] cursor-pointer object-contain transition-all duration-200 ease-out hover:scale-105 hover:-translate-y-0.5 hover:drop-shadow-md md:h-20 md:max-w-[260px]"
+                                class="max-h-16 w-auto max-w-full object-contain"
                                 loading="lazy"
                             >
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-        </section>
-    </div>
+
+            <div class="mt-9 flex items-center justify-center gap-2.5" data-clients-dots>
+                @foreach(config('litus.partners') as $i => $partner)
+                    <button
+                        type="button"
+                        class="h-2.5 w-2.5 rounded-full transition-colors duration-200 {{ $i === 0 ? 'bg-litus-accent' : 'bg-litus-navy/15' }}"
+                        data-clients-dot="{{ $i }}"
+                        aria-label="Show {{ $partner['name'] }}"
+                    ></button>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+</div>
 @endsection
